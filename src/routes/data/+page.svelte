@@ -1,20 +1,75 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-let container: HTMLDivElement;
+import { goto } from '$app/navigation';
+let fadeIn = false;
+let sliding = false;
+let moving = false;
+
 onMount(() => {
-  if (container) {
-    container.style.opacity = '0';
-    container.style.transition = 'opacity 0.5s cubic-bezier(0.4,0,0.2,1)';
-    setTimeout(() => {
-      container.style.opacity = '1';
-    }, 10);
-  }
+  setTimeout(() => { fadeIn = true; }, 10);
 });
+
+async function handleBackNav(e: MouseEvent) {
+  e.preventDefault();
+  sliding = true;
+  await new Promise(r => setTimeout(r, 500));
+  goto('/');
+}
 </script>
 
+<style>
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-in.visible {
+  opacity: 1;
+}
+.slide-right {
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+  transform: translateX(100vw);
+  opacity: 0;
+}
+.bigword-data {
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.bigword-data.moving {
+  transform: translateX(4px);
+}
+.underline-animate {
+  position: relative;
+}
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1), left 0.3s cubic-bezier(0.4,0,0.2,1);
+  transform: translateX(-50%);
+}
+.underline-animate:hover::after, .underline-animate:focus::after {
+  width: 100%;
+  left: 50%;
+}
+</style>
+
 <div class="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-  <div class="flex flex-col items-center" bind:this={container} style="opacity:0;">
-    <div class="text-[6vw] font-normal font-helvetica">Data</div>
-    <div class="mt-4 text-xl font-courier">Deku</div>
+  <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-right={sliding}>
+    <a href="/" class="text-[6vw] font-normal font-helvetica bigword-data"
+      on:mouseenter={() => moving = true}
+      on:mouseleave={() => moving = false}
+      class:moving={moving}
+      on:click={handleBackNav}
+      style="transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); cursor:pointer;">
+      Data
+    </a>
+  </div>
+  <div class="w-full flex justify-center pb-24 fade-in" class:visible={fadeIn} class:slide-right={sliding}>
+    <div class="flex space-x-16">
+      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Deku</a>
+    </div>
   </div>
 </div> 

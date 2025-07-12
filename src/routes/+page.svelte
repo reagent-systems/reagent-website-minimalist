@@ -6,6 +6,12 @@ let hovered = [false, false, false, false, false];
 let moving = [false, false, false, false, false];
 let hoverTimeouts: Array<ReturnType<typeof setTimeout> | null> = [null, null, null, null, null];
 let sliding = false;
+let fadeIn = false;
+
+onMount(() => {
+  setTimeout(() => { fadeIn = true; }, 10);
+  updateGlow();
+});
 
 function highlight(idx: number) {
   highlighted = idx;
@@ -39,7 +45,6 @@ function updateGlow() {
     }
   });
 }
-onMount(updateGlow);
 
 async function handleMainNav(e: MouseEvent, href: string) {
   e.preventDefault();
@@ -50,6 +55,13 @@ async function handleMainNav(e: MouseEvent, href: string) {
 </script>
 
 <style>
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-in.visible {
+  opacity: 1;
+}
 .slide-left {
   transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
   transform: translateX(-100vw);
@@ -90,7 +102,7 @@ async function handleMainNav(e: MouseEvent, href: string) {
 </style>
 
 <div class="min-h-screen flex flex-col justify-between bg-black text-white dark:bg-black dark:text-white bg-white text-black transition-colors duration-300">
-  <div class="flex-1 flex flex-col items-center justify-center {sliding ? 'slide-left' : ''}">
+  <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-left={sliding}>
     <div class="flex flex-col big-words group" style="gap:0;">
       <a href="/data" class="text-[6vw] font-normal text-left leading-none bigword font-helvetica"
         class:moving={moving[0]} class:hovered={hovered[0]}
@@ -123,7 +135,7 @@ async function handleMainNav(e: MouseEvent, href: string) {
       </a>
     </div>
   </div>
-  <div class="w-full flex justify-center pb-24 {sliding ? 'slide-left' : ''}">
+  <div class="w-full flex justify-center pb-24 fade-in" class:visible={fadeIn} class:slide-left={sliding}>
     <div class="flex space-x-16">
       <a href="#" class="text-lg underline-animate font-courier">Pitch</a>
       <a href="#" class="text-lg underline-animate font-courier">Waitlist</a>
