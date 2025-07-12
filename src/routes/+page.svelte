@@ -123,7 +123,7 @@ async function handleMainNav(e: MouseEvent, href: string) {
         <span>Agent</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
-        style="margin-top:8px;"
+        style="margin-top:8px; margin-right:-3px;"
         class:moving={moving[3]} class:hovered={hovered[3]}
         on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}>
         <span>App</span>
