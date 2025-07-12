@@ -53,7 +53,7 @@ onMount(updateGlow);
   transform: translateX(4px);
 }
 .big-words .bigword.glow {
-  text-shadow: 0 0 16px #60a5fa, 0 0 32px #818cf8;
+  text-shadow: 0 0 6px #e0f7fa, 0 0 12px #f8fafc;
   color: #fff !important;
   filter: brightness(1.2);
 }
@@ -84,23 +84,33 @@ onMount(updateGlow);
 <div class="min-h-screen flex flex-col justify-between bg-black text-white dark:bg-black dark:text-white bg-white text-black transition-colors duration-300">
   <div class="flex-1 flex flex-col items-center justify-center">
     <div class="flex flex-col big-words group" style="gap:0;">
-      <a href="#" class="text-[6vw] font-normal text-left leading-none bigword" style="font-family: Helvetica, Arial, sans-serif;"
+      <a href="#" class="text-[6vw] font-normal text-left leading-none bigword"
+        style="font-family: Helvetica, Arial, sans-serif;"
+        class:moving={moving[0]} class:hovered={hovered[0]} class:glow={highlighted === 0}
         on:mouseenter={() => highlight(0)} on:mouseleave={() => clearHighlight(0)}>
         <span>Data</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-left leading-none bigword" style="font-family: Helvetica, Arial, sans-serif; margin-top:-2px;"
+      <a href="#" class="text-[6vw] font-normal text-left leading-none bigword"
+        style="font-family: Helvetica, Arial, sans-serif; margin-top:-2px;"
+        class:moving={moving[1]} class:hovered={hovered[1]} class:glow={highlighted === 1}
         on:mouseenter={() => highlight(1)} on:mouseleave={() => clearHighlight(1)}>
         <span>Model</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword" style="font-family: Helvetica, Arial, sans-serif; margin-top:-8px;"
+      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword"
+        style="font-family: Helvetica, Arial, sans-serif; margin-top:-8px;"
+        class:moving={moving[2]} class:hovered={hovered[2]} class:glow={highlighted === 2}
         on:mouseenter={() => highlight(2)} on:mouseleave={() => clearHighlight(2)}>
         <span>Agent</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword" style="font-family: Helvetica, Arial, sans-serif; margin-top:8px;"
+      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword"
+        style="font-family: Helvetica, Arial, sans-serif; margin-top:8px;"
+        class:moving={moving[3]} class:hovered={hovered[3]} class:glow={highlighted === 3}
         on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}>
         <span>App</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword" style="font-family: Helvetica, Arial, sans-serif;"
+      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword"
+        style="font-family: Helvetica, Arial, sans-serif;"
+        class:moving={moving[4]} class:hovered={hovered[4]} class:glow={highlighted === 4}
         on:mouseenter={() => highlight(4)} on:mouseleave={() => clearHighlight(4)}>
         <span>Repeat</span>
       </a>
