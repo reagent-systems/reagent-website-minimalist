@@ -79,7 +79,7 @@ onMount(updateGlow);
 <div class="min-h-screen flex flex-col justify-between bg-black text-white dark:bg-black dark:text-white bg-white text-black transition-colors duration-300">
   <div class="flex-1 flex flex-col items-center justify-center">
     <div class="flex flex-col big-words group" style="gap:0;">
-      <a href="#" class="text-[6vw] font-normal text-left leading-none bigword"
+      <a href="/data" class="text-[6vw] font-normal text-left leading-none bigword"
         style="font-family: Helvetica, Arial, sans-serif;"
         class:moving={moving[0]} class:hovered={hovered[0]}
         on:mouseenter={() => highlight(0)} on:mouseleave={() => clearHighlight(0)}>

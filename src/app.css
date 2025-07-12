@@ -1,3 +1,16 @@
+/*
+Global font utility classes:
+.font-helvetica { font-family: Helvetica, Arial, sans-serif; }
+.font-courier { font-family: 'Courier New', Courier, monospace; }
+*/
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
+
+.font-helvetica {
+  font-family: Helvetica, Arial, sans-serif;
+}
+.font-courier {
+  font-family: 'Courier New', Courier, monospace;
+}
