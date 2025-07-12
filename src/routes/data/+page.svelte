@@ -61,7 +61,7 @@ async function handleBackNav(e: MouseEvent) {
 </style>
 
 <div class="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-  <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-up={sliding}>
+  <div class="flex flex-col items-center fade-in flex-1 justify-center" class:visible={fadeIn} class:slide-up={sliding}>
     <a href="/" class="text-[6vw] font-normal font-helvetica bigword"
       on:mouseenter={() => moving = true}
       on:mouseleave={() => moving = false}
@@ -70,10 +70,6 @@ async function handleBackNav(e: MouseEvent) {
       style="cursor:pointer;">
       Data
     </a>
-  </div>
-  <div class="w-full flex justify-center pb-24 fade-in" class:visible={fadeIn} class:slide-up={sliding}>
-    <div class="flex space-x-16">
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Deku</a>
-    </div>
+    <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none; margin-top:48px;">Deku</a>
   </div>
 </div> 
