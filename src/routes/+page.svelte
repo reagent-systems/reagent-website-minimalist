@@ -6,9 +6,9 @@
   <div class="flex-1 flex flex-col items-center justify-center">
     <div class="flex flex-col" style="gap:0;">
       <div class="text-[6vw] font-normal text-left leading-none" style="font-family: Helvetica, Arial, sans-serif;">Data</div>
-      <div class="text-[6vw] font-normal text-left leading-none" style="font-family: Helvetica, Arial, sans-serif;">Model</div>
+      <div class="text-[6vw] font-normal text-left leading-none" style="font-family: Helvetica, Arial, sans-serif; margin-top:-2px;">Model</div>
       <div class="text-[6vw] font-normal text-right leading-none" style="font-family: Helvetica, Arial, sans-serif; margin-top:-8px;">Agent</div>
-      <div class="text-[6vw] font-normal text-right leading-none" style="font-family: Helvetica, Arial, sans-serif;">App</div>
+      <div class="text-[6vw] font-normal text-right leading-none" style="font-family: Helvetica, Arial, sans-serif; margin-top:8px;">App</div>
       <div class="text-[6vw] font-normal text-right leading-none" style="font-family: Helvetica, Arial, sans-serif;">Repeat</div>
     </div>
   </div>
