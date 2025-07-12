@@ -25,16 +25,20 @@ async function handleBackNav(e: MouseEvent) {
 .fade-in.visible {
   opacity: 1;
 }
-.slide-right {
+.slide-up {
   transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
-  transform: translateX(100vw);
+  transform: translateY(-100vh);
   opacity: 0;
 }
-.bigword-data {
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+.bigword {
+  transition: color 0.35s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), text-shadow 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  vertical-align: top;
+  line-height: 1;
+  backface-visibility: hidden;
+  will-change: transform;
 }
-.bigword-data.moving {
-  transform: translateX(4px);
+.bigword.moving {
+  transform: translateY(-4px);
 }
 .underline-animate {
   position: relative;
@@ -57,17 +61,17 @@ async function handleBackNav(e: MouseEvent) {
 </style>
 
 <div class="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-  <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-right={sliding}>
-    <a href="/" class="text-[6vw] font-normal font-helvetica bigword-data"
+  <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-up={sliding}>
+    <a href="/" class="text-[6vw] font-normal font-helvetica bigword"
       on:mouseenter={() => moving = true}
       on:mouseleave={() => moving = false}
       class:moving={moving}
       on:click={handleBackNav}
-      style="transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); cursor:pointer;">
+      style="cursor:pointer;">
       Data
     </a>
   </div>
-  <div class="w-full flex justify-center pb-24 fade-in" class:visible={fadeIn} class:slide-right={sliding}>
+  <div class="w-full flex justify-center pb-24 fade-in" class:visible={fadeIn} class:slide-up={sliding}>
     <div class="flex space-x-16">
       <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Deku</a>
     </div>
