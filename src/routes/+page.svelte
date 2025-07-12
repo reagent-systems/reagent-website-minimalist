@@ -48,6 +48,10 @@ onMount(updateGlow);
 <style>
 .big-words .bigword {
   transition: color 0.35s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), text-shadow 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  vertical-align: top;
+  line-height: 1;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 .big-words .bigword.moving {
   transform: translateX(4px);
