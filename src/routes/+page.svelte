@@ -105,6 +105,7 @@ async function handleMainNav(e: MouseEvent, href: string) {
   <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-left={sliding}>
     <div class="flex flex-col big-words group" style="gap:0;">
       <a href="/data" class="text-[6vw] font-normal text-left leading-none bigword font-helvetica"
+        style="margin-top:2px;"
         class:moving={moving[0]} class:hovered={hovered[0]}
         on:mouseenter={() => highlight(0)} on:mouseleave={() => clearHighlight(0)}
         on:click={(e) => handleMainNav(e, '/data')}>
@@ -129,6 +130,7 @@ async function handleMainNav(e: MouseEvent, href: string) {
         <span>App</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
+        style="margin-top:-2px;"
         class:moving={moving[4]} class:hovered={hovered[4]}
         on:mouseenter={() => highlight(4)} on:mouseleave={() => clearHighlight(4)}>
         <span>Repeat</span>
