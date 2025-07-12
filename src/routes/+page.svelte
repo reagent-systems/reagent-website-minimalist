@@ -15,7 +15,7 @@ function highlight(idx: number) {
 function clearHighlight(idx: number) {
   highlighted = -1;
   moving[idx] = false;
-  // Delay removal for smooth transition
+  // Delay removal for smooth movement
   hoverTimeouts[idx] = setTimeout(() => {
     hovered[idx] = false;
     updateGlow();
@@ -35,11 +35,7 @@ function updateGlow() {
     } else {
       el.classList.remove('moving');
     }
-    if (i === highlighted) {
-      el.classList.add('glow');
-    } else {
-      el.classList.remove('glow');
-    }
+    // No glow logic
   });
 }
 onMount(updateGlow);
@@ -55,11 +51,6 @@ onMount(updateGlow);
 }
 .big-words .bigword.moving {
   transform: translateX(4px);
-}
-.big-words .bigword.glow {
-  text-shadow: 0 0 6px #e0f7fa, 0 0 12px #f8fafc;
-  color: #fff !important;
-  filter: brightness(1.2);
 }
 .big-words.group:hover .bigword:not(.hovered) {
   color: #222 !important;
@@ -90,31 +81,31 @@ onMount(updateGlow);
     <div class="flex flex-col big-words group" style="gap:0;">
       <a href="#" class="text-[6vw] font-normal text-left leading-none bigword"
         style="font-family: Helvetica, Arial, sans-serif;"
-        class:moving={moving[0]} class:hovered={hovered[0]} class:glow={highlighted === 0}
+        class:moving={moving[0]} class:hovered={hovered[0]}
         on:mouseenter={() => highlight(0)} on:mouseleave={() => clearHighlight(0)}>
         <span>Data</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-left leading-none bigword"
         style="font-family: Helvetica, Arial, sans-serif; margin-top:-2px;"
-        class:moving={moving[1]} class:hovered={hovered[1]} class:glow={highlighted === 1}
+        class:moving={moving[1]} class:hovered={hovered[1]}
         on:mouseenter={() => highlight(1)} on:mouseleave={() => clearHighlight(1)}>
         <span>Model</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-right leading-none bigword"
         style="font-family: Helvetica, Arial, sans-serif; margin-top:-8px;"
-        class:moving={moving[2]} class:hovered={hovered[2]} class:glow={highlighted === 2}
+        class:moving={moving[2]} class:hovered={hovered[2]}
         on:mouseenter={() => highlight(2)} on:mouseleave={() => clearHighlight(2)}>
         <span>Agent</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-right leading-none bigword"
         style="font-family: Helvetica, Arial, sans-serif; margin-top:8px;"
-        class:moving={moving[3]} class:hovered={hovered[3]} class:glow={highlighted === 3}
+        class:moving={moving[3]} class:hovered={hovered[3]}
         on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}>
         <span>App</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-right leading-none bigword"
         style="font-family: Helvetica, Arial, sans-serif;"
-        class:moving={moving[4]} class:hovered={hovered[4]} class:glow={highlighted === 4}
+        class:moving={moving[4]} class:hovered={hovered[4]}
         on:mouseenter={() => highlight(4)} on:mouseleave={() => clearHighlight(4)}>
         <span>Repeat</span>
       </a>
