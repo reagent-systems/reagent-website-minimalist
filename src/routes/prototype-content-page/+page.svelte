@@ -33,16 +33,47 @@
   overflow-y: auto;
   background: transparent;
   border-radius: 0.5rem;
-  padding: 1.5rem;
+  padding: 1.5rem 0 1.5rem 0;
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-left: 0;
+}
+@media (min-width: 768px) {
+  .align-col {
+    max-width: 600px;
+    margin-left: 5vw;
+    width: 100%;
+    padding-left: 0;
+  }
+  .scrollbox {
+    padding-left: 0;
+  }
+}
+@media (max-width: 767px) {
+  .align-col {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 0;
+    padding-left: 6vw;
+    box-sizing: border-box;
+  }
+  .scrollbox {
+    padding-left: 0;
+  }
+  .medium-font {
+    padding-left: 6vw;
+  }
 }
 </style>
 
 <div class="min-h-screen flex flex-col bg-black text-white font-courier">
   <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
-    <div class="flex flex-col justify-center w-full md:w-1/2 pr-8 md:pr-8" style="max-width:600px; margin-left:5vw;">
+    <div class="flex flex-col justify-center w-full md:w-1/2 pr-8 md:pr-8 align-col">
       <div class="medium-font mb-12 font-courier" style="text-align:left;">{data.title}</div>
-      <div class="scrollbox prose prose-invert w-full mb-16">
-        {@html data.html}
+      <div class="scrollbox w-full mb-16">
+        {data.content}
       </div>
     </div>
     <div class="w-full md:w-1/2 pr-4 md:pr-8" />

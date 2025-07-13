@@ -1,11 +1,31 @@
-import { marked } from 'marked';
+function stripMarkdown(md: string) {
+  // Remove code blocks
+  md = md.replace(/```[\s\S]*?```/g, '');
+  // Remove images
+  md = md.replace(/!\[[^\]]*\]\([^)]*\)/g, '');
+  // Remove links but keep text
+  md = md.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
+  // Remove emphasis, bold, strikethrough
+  md = md.replace(/([*_~`>])/g, '');
+  // Remove headings
+  md = md.replace(/^#+\s?/gm, '');
+  // Remove lists
+  md = md.replace(/^\s*[-*+]\s+/gm, '');
+  // Remove blockquotes
+  md = md.replace(/^>\s?/gm, '');
+  // Remove horizontal rules
+  md = md.replace(/^---$/gm, '');
+  // Remove extra newlines
+  md = md.replace(/\n{2,}/g, '\n\n');
+  return md.trim();
+}
 
 export async function load() {
   const repo = 'reagent-systems/dither';
   const repoUrl = `https://github.com/${repo}`;
   const res = await fetch('https://raw.githubusercontent.com/reagent-systems/dither/main/README.md');
   if (!res.ok) {
-    return { title: 'Dither', html: '<p>Failed to fetch README from GitHub.</p>', link: repoUrl, screenshot: null };
+    return { title: 'Dither', content: 'Failed to fetch README from GitHub.', link: repoUrl };
   }
   const markdown = await res.text();
   // Extract the first line as title if it starts with #
@@ -17,12 +37,9 @@ export async function load() {
     startIdx = 1;
   }
   // Find and remove the first image (screenshot)
-  let screenshot = null;
   let imgIdx = -1;
   for (let i = startIdx; i < lines.length; i++) {
-    const match = lines[i].match(/!\[[^\]]*\]\(([^)]+)\)/);
-    if (match) {
-      screenshot = match[1];
+    if (/!\[[^\]]*\]\([^)]*\)/.test(lines[i])) {
       imgIdx = i;
       break;
     }
@@ -39,10 +56,6 @@ export async function load() {
     }
   }
   const mainBody = lines.slice(startIdx, endIdx).join('\n').trim();
-  const html = marked(mainBody);
-  // If screenshot is a relative path, make it absolute to the repo
-  if (screenshot && !/^https?:\/\//.test(screenshot)) {
-    screenshot = `https://raw.githubusercontent.com/${repo}/main/${screenshot.replace(/^\//, '')}`;
-  }
-  return { title, html, link: repoUrl, screenshot };
+  const content = stripMarkdown(mainBody);
+  return { title, content, link: repoUrl };
 } 
