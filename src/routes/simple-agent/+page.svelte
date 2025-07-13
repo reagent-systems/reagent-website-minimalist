@@ -1,6 +1,11 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+import { goto } from '$app/navigation';
 let fadeIn = false;
+
+function handleBack() {
+  goto('/agent');
+}
 
 onMount(() => {
   setTimeout(() => { fadeIn = true; }, 10);
@@ -20,6 +25,11 @@ onMount(() => {
 }
 .medium-font {
   font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.medium-font:hover, .medium-font:focus {
+  transform: translateY(-6px);
 }
 .underline-animate {
   position: relative;
@@ -44,7 +54,7 @@ onMount(() => {
 <div class="min-h-screen flex flex-col bg-black text-white font-courier">
   <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
     <div class="flex flex-col justify-center fade-in w-full md:w-1/2 pr-8 md:pr-8" class:visible={fadeIn} style="max-width:600px; margin-left:5vw;">
-      <div class="medium-font mb-12">Simple-Agent</div>
+      <div class="medium-font mb-12" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Agent">Simple-Agent</div>
       <div class="text-lg leading-relaxed w-full text-justify break-words mb-16">
         SimpleAgent is designed with the belief that AI agents don't need to be complex to be useful. By focusing on a small set of core operations and using function calling for all interactions, SimpleAgent remains easy to understand, modify, and extend while providing advanced features like dynamic tool loading, loop detection, and intelligent execution management.
       </div>
