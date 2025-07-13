@@ -62,9 +62,6 @@
   .scrollbox {
     padding-left: 0;
   }
-  .medium-font {
-    padding-left: 6vw;
-  }
 }
 </style>
 
