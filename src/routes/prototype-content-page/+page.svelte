@@ -29,7 +29,7 @@
   left: 50%;
 }
 .scrollbox {
-  max-height: 60vh;
+  max-height: 40vh;
   overflow-y: auto;
   background: transparent;
   border-radius: 0.5rem;
