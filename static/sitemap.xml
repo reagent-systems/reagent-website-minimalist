@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yourdomain.com/</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/data</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/model</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/agent</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/app</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/repeat</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/simple-agent</loc>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/tetra</loc>
+  </url>
+</urlset> 
