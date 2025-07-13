@@ -42,14 +42,14 @@ onMount(() => {
 </style>
 
 <div class="min-h-screen flex flex-col bg-black text-white font-courier">
-  <div class="flex flex-row flex-1 items-center justify-center">
-    <div class="flex flex-col justify-center fade-in" class:visible={fadeIn} style="flex:1; max-width:600px; margin-left:5vw;">
+  <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
+    <div class="flex flex-col justify-center fade-in w-full md:w-1/2 pr-8 md:pr-8" class:visible={fadeIn} style="max-width:600px; margin-left:5vw;">
       <div class="medium-font mb-12">Simple-Agent</div>
-      <div class="text-lg leading-relaxed w-full text-center break-words mb-16">
+      <div class="text-lg leading-relaxed w-full text-justify break-words mb-16">
         SimpleAgent is designed with the belief that AI agents don't need to be complex to be useful. By focusing on a small set of core operations and using function calling for all interactions, SimpleAgent remains easy to understand, modify, and extend while providing advanced features like dynamic tool loading, loop detection, and intelligent execution management.
       </div>
     </div>
-    <div style="flex:1;" />
+    <div class="w-full md:w-1/2 pr-4 md:pr-8" />
   </div>
   <div class="w-full flex justify-center pb-12 fade-in" class:visible={fadeIn}>
     <a href="https://github.com/reagent-systems/Simple-Agent-Core" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
