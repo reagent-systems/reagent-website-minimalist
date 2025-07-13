@@ -118,22 +118,25 @@ async function handleMainNav(e: MouseEvent, href: string) {
         on:click={(e) => handleMainNav(e, '/model')}>
         <span>Model</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
+      <a href="/agent" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
         style="margin-top:-8px;"
         class:moving={moving[2]} class:hovered={hovered[2]}
-        on:mouseenter={() => highlight(2)} on:mouseleave={() => clearHighlight(2)}>
+        on:mouseenter={() => highlight(2)} on:mouseleave={() => clearHighlight(2)}
+        on:click={(e) => handleMainNav(e, '/agent')}>
         <span>Agent</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
+      <a href="/app" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
         style="margin-top:8px; margin-right:-3px;"
         class:moving={moving[3]} class:hovered={hovered[3]}
-        on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}>
+        on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}
+        on:click={(e) => handleMainNav(e, '/app')}>
         <span>App</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
+      <a href="/repeat" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
         style="margin-top:-2px;"
         class:moving={moving[4]} class:hovered={hovered[4]}
-        on:mouseenter={() => highlight(4)} on:mouseleave={() => clearHighlight(4)}>
+        on:mouseenter={() => highlight(4)} on:mouseleave={() => clearHighlight(4)}
+        on:click={(e) => handleMainNav(e, '/repeat')}>
         <span>Repeat</span>
       </a>
     </div>
