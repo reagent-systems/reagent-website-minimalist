@@ -70,7 +70,7 @@ async function handleBackNav(e: MouseEvent) {
       Agent
     </a>
     <div class="flex flex-row items-center justify-center space-x-16 fade-in" class:visible={fadeIn} style="margin-top:48px;">
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Orc</a>
+      <a href="/orc" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Orc</a>
       <a href="/simple-agent" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Simple-Agent</a>
     </div>
   </div>
