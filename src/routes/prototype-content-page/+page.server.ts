@@ -5,7 +5,7 @@ export async function load() {
   const repoUrl = `https://github.com/${repo}`;
   const res = await fetch('https://raw.githubusercontent.com/reagent-systems/dither/main/README.md');
   if (!res.ok) {
-    return { title: 'Dither', html: '<p>Failed to fetch README from GitHub.</p>', link: repoUrl };
+    return { title: 'Dither', html: '<p>Failed to fetch README from GitHub.</p>', link: repoUrl, screenshot: null };
   }
   const markdown = await res.text();
   // Extract the first line as title if it starts with #
@@ -15,6 +15,20 @@ export async function load() {
   if (lines[0].startsWith('# ')) {
     title = lines[0].replace(/^# /, '').trim();
     startIdx = 1;
+  }
+  // Find and remove the first image (screenshot)
+  let screenshot = null;
+  let imgIdx = -1;
+  for (let i = startIdx; i < lines.length; i++) {
+    const match = lines[i].match(/!\[[^\]]*\]\(([^)]+)\)/);
+    if (match) {
+      screenshot = match[1];
+      imgIdx = i;
+      break;
+    }
+  }
+  if (imgIdx !== -1) {
+    lines.splice(imgIdx, 1);
   }
   // Remove any trailing license/about/footer sections (optional, simple heuristic)
   let endIdx = lines.length;
@@ -26,5 +40,9 @@ export async function load() {
   }
   const mainBody = lines.slice(startIdx, endIdx).join('\n').trim();
   const html = marked(mainBody);
-  return { title, html, link: repoUrl };
+  // If screenshot is a relative path, make it absolute to the repo
+  if (screenshot && !/^https?:\/\//.test(screenshot)) {
+    screenshot = `https://raw.githubusercontent.com/${repo}/main/${screenshot.replace(/^\//, '')}`;
+  }
+  return { title, html, link: repoUrl, screenshot };
 } 
