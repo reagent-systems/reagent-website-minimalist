@@ -111,10 +111,11 @@ async function handleMainNav(e: MouseEvent, href: string) {
         on:click={(e) => handleMainNav(e, '/data')}>
         <span>Data</span>
       </a>
-      <a href="#" class="text-[6vw] font-normal text-left leading-none bigword font-helvetica"
+      <a href="/model" class="text-[6vw] font-normal text-left leading-none bigword font-helvetica"
         style="margin-top:-2px;"
         class:moving={moving[1]} class:hovered={hovered[1]}
-        on:mouseenter={() => highlight(1)} on:mouseleave={() => clearHighlight(1)}>
+        on:mouseenter={() => highlight(1)} on:mouseleave={() => clearHighlight(1)}
+        on:click={(e) => handleMainNav(e, '/model')}>
         <span>Model</span>
       </a>
       <a href="#" class="text-[6vw] font-normal text-right leading-none bigword font-helvetica"
