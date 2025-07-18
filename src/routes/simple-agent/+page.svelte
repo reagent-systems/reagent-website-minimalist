@@ -5,36 +5,51 @@ let fadeIn = false;
 
 // Python runner state
 let pyodide: any = null;
-let pythonCode = `# Simple Python Example
+let pythonCode = `# SimpleAgent Python Environment
 import sys
 import json
+from datetime import datetime
+
+print("🐍 Python Environment Initialized")
+print("=" * 50)
 
 def fibonacci(n):
     if n <= 1:
         return n
     return fibonacci(n-1) + fibonacci(n-2)
 
-def greet(name):
-    return f"Hello, {name}! Welcome to SimpleAgent Python Runner."
+def prime_check(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-# Calculate first 10 fibonacci numbers
-fib_numbers = [fibonacci(i) for i in range(10)]
-print("First 10 Fibonacci numbers:", fib_numbers)
+# System info
+print(f"📅 Current time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+print(f"🐍 Python version: {sys.version.split()[0]}")
+print(f"💻 Platform: Pyodide (Browser-based Python)")
+print()
 
-# Greet the user
-message = greet("SimpleAgent User")
-print(message)
+# Demo calculations
+print("🔢 Mathematics Demo:")
+fib_numbers = [fibonacci(i) for i in range(12)]
+print(f"Fibonacci sequence (12 terms): {fib_numbers}")
 
-# Show Python version
-print(f"Python version: {sys.version}")
+primes = [n for n in range(2, 50) if prime_check(n)]
+print(f"Prime numbers up to 50: {primes}")
+print()
 
-# Return some data
-result = {
-    "fibonacci": fib_numbers,
-    "message": message,
-    "python_version": sys.version
-}
-print("Result:", json.dumps(result, indent=2))`;
+# Fun facts
+print("✨ Fun Facts:")
+print(f"• Sum of first 12 Fibonacci numbers: {sum(fib_numbers)}")
+print(f"• Number of primes under 50: {len(primes)}")
+print(f"• Golden ratio approximation: {fib_numbers[-1]/fib_numbers[-2]:.6f}")
+print()
+
+print("🚀 SimpleAgent is ready for AI-powered automation!")
+print("Visit: https://github.com/reagent-systems/Simple-Agent-Core")`;
 
 let output = '';
 let isLoading = false;
@@ -58,6 +73,8 @@ async function loadPyodide() {
       pyodide = await (window as any).loadPyodide();
       isPyodideReady = true;
       isLoading = false;
+      // Auto-run the code
+      await runPython();
       return;
     }
 
@@ -83,6 +100,8 @@ async function loadPyodide() {
       pyodide = await (window as any).loadPyodide();
       isPyodideReady = true;
       isLoading = false;
+      // Auto-run the code
+      await runPython();
       return;
     }
     
@@ -107,6 +126,8 @@ async function loadPyodide() {
     pyodide = await (window as any).loadPyodide();
     isPyodideReady = true;
     console.log('Pyodide initialized successfully');
+    // Auto-run the code
+    await runPython();
   } catch (error) {
     console.error('Failed to load Pyodide:', error);
     loadingError = 'Failed to load Pyodide: ' + error;
@@ -119,15 +140,17 @@ async function loadPyodide() {
 async function runPython() {
   if (!pyodide) {
     if (loadingError) {
-      output = 'Pyodide failed to load. Please click the Retry button above.';
+      output = 'Python environment failed to load.';
     } else {
-      output = 'Pyodide not loaded yet. Please wait for initialization to complete.';
+      output = 'Python environment loading...';
     }
     return;
   }
 
-  isLoading = true;
-  output = '';
+  const wasLoading = isLoading;
+  if (!wasLoading) {
+    isLoading = true;
+  }
   
   try {
     // Redirect stdout to capture print statements
@@ -146,18 +169,17 @@ sys.stdout = StringIO()
   } catch (error) {
     output = 'Error: ' + error;
   } finally {
-    isLoading = false;
+    if (!wasLoading) {
+      isLoading = false;
+    }
   }
-}
-
-function clearOutput() {
-  output = '';
 }
 
 function retryLoad() {
   loadingError = '';
   isPyodideReady = false;
   pyodide = null;
+  output = '';
   loadPyodide();
 }
 
@@ -213,25 +235,6 @@ onMount(() => {
   padding: 1rem;
 }
 
-.code-editor {
-  background: #2d2d2d;
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: #fff;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 1rem;
-  resize: vertical;
-  width: 100%;
-  min-height: 200px;
-}
-
-.code-editor:focus {
-  outline: none;
-  border-color: #666;
-}
-
 .output-area {
   background: #000;
   border: 1px solid #333;
@@ -243,8 +246,8 @@ onMount(() => {
   padding: 1rem;
   white-space: pre-wrap;
   word-wrap: break-word;
-  min-height: 120px;
-  max-height: 300px;
+  min-height: 300px;
+  max-height: 400px;
   overflow-y: auto;
 }
 
@@ -262,22 +265,6 @@ onMount(() => {
 .btn:hover {
   background: #444;
   border-color: #666;
-}
-
-.btn:disabled {
-  background: #222;
-  border-color: #333;
-  color: #666;
-  cursor: not-allowed;
-}
-
-.btn-primary {
-  background: #2563eb;
-  border-color: #3b82f6;
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: #1d4ed8;
 }
 
 .loading-spinner {
@@ -330,41 +317,12 @@ onMount(() => {
           </div>
         {/if}
         
-        <div class="mb-4">
-          <label for="python-code" class="block text-sm mb-2">Python Code:</label>
-          <textarea
-            id="python-code"
-            bind:value={pythonCode}
-            class="code-editor"
-            placeholder="Enter your Python code here..."
-          ></textarea>
-        </div>
-        
-        <div class="flex space-x-2 mb-4">
-          <button 
-            class="btn btn-primary"
-            on:click={runPython}
-            disabled={!isPyodideReady || isLoading || !!loadingError}
-          >
-            {#if isLoading}
-              <span class="loading-spinner mr-2"></span>
-            {/if}
-            Run Code
-          </button>
-          <button 
-            class="btn"
-            on:click={clearOutput}
-            disabled={isLoading || !!loadingError}
-          >
-            Clear Output
-          </button>
-        </div>
-        
-        <div class="mb-2">
-          <label class="block text-sm mb-2">Output:</label>
-          <div class="output-area">
-            {output || 'No output yet. Run some Python code!'}
-          </div>
+        <div class="output-area">
+          {#if isLoading && !output}
+            <span class="text-yellow-400">Initializing Python environment...</span>
+          {:else}
+            {output || 'Loading...'}
+          {/if}
         </div>
       </div>
     </div>
