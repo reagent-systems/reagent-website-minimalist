@@ -39,36 +39,90 @@ print("Result:", json.dumps(result, indent=2))`;
 let output = '';
 let isLoading = false;
 let isPyodideReady = false;
+let loadingError = '';
 
 function handleBack() {
   goto('/agent');
 }
 
 async function loadPyodide() {
-  if (pyodide) return;
+  if (pyodide || isLoading) return;
   
   isLoading = true;
+  loadingError = '';
+  
   try {
-    // Load Pyodide from CDN
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
-    script.onload = async () => {
-      // @ts-ignore
-      pyodide = await loadPyodide();
+    // Check if Pyodide is already loaded globally
+    if (typeof window !== 'undefined' && (window as any).loadPyodide) {
+      console.log('Pyodide script already available, initializing...');
+      pyodide = await (window as any).loadPyodide();
       isPyodideReady = true;
       isLoading = false;
-    };
-    document.head.appendChild(script);
+      return;
+    }
+
+    // Check if script is already added
+    const existingScript = document.querySelector('script[src*="pyodide.js"]');
+    if (existingScript) {
+      console.log('Pyodide script already added, waiting for load...');
+      // Wait for it to load
+      await new Promise((resolve, reject) => {
+        const checkInterval = setInterval(() => {
+          if ((window as any).loadPyodide) {
+            clearInterval(checkInterval);
+            resolve(true);
+          }
+        }, 100);
+        
+        setTimeout(() => {
+          clearInterval(checkInterval);
+          reject(new Error('Timeout waiting for Pyodide script'));
+        }, 30000);
+      });
+      
+      pyodide = await (window as any).loadPyodide();
+      isPyodideReady = true;
+      isLoading = false;
+      return;
+    }
+    
+    console.log('Loading Pyodide script...');
+    // Load Pyodide from CDN
+    await new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+    
+    console.log('Pyodide script loaded, initializing...');
+    // Wait a bit for the script to initialize
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    if (!(window as any).loadPyodide) {
+      throw new Error('Pyodide loadPyodide function not available');
+    }
+    
+    pyodide = await (window as any).loadPyodide();
+    isPyodideReady = true;
+    console.log('Pyodide initialized successfully');
   } catch (error) {
     console.error('Failed to load Pyodide:', error);
-    output = 'Error loading Pyodide: ' + error;
+    loadingError = 'Failed to load Pyodide: ' + error;
+    isPyodideReady = false;
+  } finally {
     isLoading = false;
   }
 }
 
 async function runPython() {
   if (!pyodide) {
-    output = 'Pyodide not loaded yet. Please wait...';
+    if (loadingError) {
+      output = 'Pyodide failed to load. Please click the Retry button above.';
+    } else {
+      output = 'Pyodide not loaded yet. Please wait for initialization to complete.';
+    }
     return;
   }
 
@@ -98,6 +152,13 @@ sys.stdout = StringIO()
 
 function clearOutput() {
   output = '';
+}
+
+function retryLoad() {
+  loadingError = '';
+  isPyodideReady = false;
+  pyodide = null;
+  loadPyodide();
 }
 
 onMount(() => {
@@ -252,6 +313,9 @@ onMount(() => {
             {#if isLoading}
               <div class="loading-spinner"></div>
               <span class="text-sm">Loading...</span>
+            {:else if loadingError}
+              <span class="text-sm text-red-400">Error</span>
+              <button class="btn text-xs" on:click={retryLoad}>Retry</button>
             {:else if isPyodideReady}
               <span class="text-sm text-green-400">Ready</span>
             {:else}
@@ -259,6 +323,12 @@ onMount(() => {
             {/if}
           </div>
         </div>
+        
+        {#if loadingError}
+          <div class="mb-4 p-3 bg-red-900 border border-red-500 rounded text-red-200 text-sm">
+            {loadingError}
+          </div>
+        {/if}
         
         <div class="mb-4">
           <label for="python-code" class="block text-sm mb-2">Python Code:</label>
@@ -274,7 +344,7 @@ onMount(() => {
           <button 
             class="btn btn-primary"
             on:click={runPython}
-            disabled={!isPyodideReady || isLoading}
+            disabled={!isPyodideReady || isLoading || !!loadingError}
           >
             {#if isLoading}
               <span class="loading-spinner mr-2"></span>
@@ -284,7 +354,7 @@ onMount(() => {
           <button 
             class="btn"
             on:click={clearOutput}
-            disabled={isLoading}
+            disabled={isLoading || !!loadingError}
           >
             Clear Output
           </button>
