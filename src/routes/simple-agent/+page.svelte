@@ -19,7 +19,7 @@ function handleBack() {
 function connectWebSocket() {
   try {
     // Connect to the Simple-Agent WebSocket server
-    socket = io('http://localhost:5000');
+    socket = io('https://simple-agent-websocket-88216607026.us-central1.run.app');
     
     socket.on('connect', () => {
       connected = true;
@@ -34,7 +34,6 @@ function connectWebSocket() {
     
     socket.on('connected', (data: any) => {
       console.log('Session established:', data);
-      addMessage('agent', `Connected to Simple-Agent v${data.agent_version} (${data.api_provider})`);
     });
     
     socket.on('agent_started', (data: any) => {
@@ -190,123 +189,119 @@ onDestroy(() => {
 }
 
 /* Chat interface styles */
-.chat-container {
+.chat-wrapper {
   display: flex;
   flex-direction: column;
   height: 60vh;
   max-height: 600px;
-  overflow-y: auto;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: #000;
-  padding: 1rem;
+  position: relative;
   margin-bottom: 1rem;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000;
+  position: relative;
+  padding-bottom: 1rem;
+  min-height: 0;
 }
 
 .message {
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  border-radius: 8px;
-  max-width: 80%;
-  word-wrap: break-word;
+  padding: 1rem;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
   line-height: 1.4;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  transition: all 0.3s ease;
 }
 
 .message.agent {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #00ff00;
+  width: 45%;
   align-self: flex-start;
   margin-right: auto;
 }
 
 .message.user {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #ffffff;
+  width: 60%;
   align-self: flex-end;
   margin-left: auto;
-  text-align: right;
+}
+
+/* Center the first message when chat is empty */
+.chat-container:has(.message:only-child) {
+  justify-content: center;
+  align-items: center;
+  padding-top: 20vh;
+}
+
+.chat-container:has(.message:only-child) .message {
+  width: 80%;
+  align-self: center;
+  margin: 0;
 }
 
 .message-input {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  width: 60%;
+  align-self: flex-end;
+  margin-left: auto;
   margin-top: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .input-field {
-  flex: 1;
+  width: 100%;
   background: transparent;
-  border: 1px solid #333;
-  border-radius: 4px;
+  border: 1px solid white;
   color: white;
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
-  padding: 0.75rem;
+  padding: 1rem;
   resize: none;
-  min-height: 44px;
-  max-height: 120px;
+  min-height: 80px;
+  margin-bottom: 0.5rem;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #00ff00;
 }
 
 .send-button {
-  background: #00ff00;
-  color: black;
-  border: none;
-  border-radius: 4px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
   padding: 0.75rem 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
-  white-space: nowrap;
+  transition: all 0.2s;
+  align-self: flex-end;
 }
 
 .send-button:hover:not(:disabled) {
-  background: #00cc00;
+  background: white;
+  color: black;
 }
 
 .send-button:disabled {
-  background: #333;
+  border-color: #666;
   color: #666;
   cursor: not-allowed;
 }
 
-.status-indicator {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 12px;
-  margin-bottom: 1rem;
-}
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #666;
-}
 
-.status-dot.connected {
-  background: #00ff00;
-}
 
-.status-dot.running {
-  background: #ffff00;
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
 
 .error-message {
   background: #330000;
@@ -331,37 +326,26 @@ onDestroy(() => {
     
     <!-- Chat Interface Container -->
     <div class="w-full md:w-1/2 pr-4 md:pr-8 fade-in" class:visible={fadeIn}>
-      <div class="status-indicator">
-        <div class="status-dot" class:connected={connected} class:running={isAgentRunning}></div>
-        <span>
-          {#if !connected}
-            Connecting...
-          {:else if isAgentRunning}
-            Agent Running
-          {:else}
-            Connected
-          {/if}
-        </span>
-      </div>
-      
       {#if connectionError}
         <div class="error-message">
           {connectionError}
         </div>
       {/if}
       
-      <div class="chat-container">
-        {#if messages.length === 0}
-          <div class="message agent">
-            🤖 Hello! I'm Simple-Agent. Send me a task and I'll help you complete it.
-          </div>
-        {:else}
-          {#each messages as message}
-            <div class="message {message.type}">
-              {message.content}
+      <div class="chat-wrapper">
+        <div class="chat-container">
+          {#if messages.length === 0}
+            <div class="message agent">
+              🤖 Hello! I'm Simple-Agent. Send me a task and I'll help you complete it.
             </div>
-          {/each}
-        {/if}
+          {:else}
+            {#each messages as message}
+              <div class="message {message.type}">
+                {message.content}
+              </div>
+            {/each}
+          {/if}
+        </div>
       </div>
       
       <div class="message-input">
