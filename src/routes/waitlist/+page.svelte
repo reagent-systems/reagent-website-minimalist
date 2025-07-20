@@ -105,12 +105,12 @@ async function handleSubmit(e: Event) {
 
 <div class="min-h-screen flex flex-col items-center justify-center bg-black text-white">
   <div class="flex flex-col items-center fade-in flex-1 justify-center" class:visible={fadeIn} class:slide-up={sliding}>
-    <a href="/" class="text-[6vw] font-normal font-courier bigword"
+    <a href="/" class="font-normal font-courier bigword"
       on:mouseenter={() => moving = true}
       on:mouseleave={() => moving = false}
       class:moving={moving}
       on:click={handleBackNav}
-      style="cursor:pointer;">
+      style="cursor:pointer; font-size: clamp(2rem, 6vw, 4rem);">
       Waitlist
     </a>
     <div class="flex flex-col items-center space-y-8" style="margin-top:48px;">
