@@ -55,6 +55,17 @@ function handleBack() {
   flex: 1;
   padding-left: 2rem;
   padding-top: 0;
+  display: flex;
+  flex-direction: column;
+}
+.image-placeholder {
+  border: 1px solid white;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  flex: 1;
 }
 .bio-text {
   line-height: 1.6;
