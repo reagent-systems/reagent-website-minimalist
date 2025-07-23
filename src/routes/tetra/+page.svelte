@@ -51,7 +51,7 @@ onMount(() => {
 }
 </style>
 
-<div class="min-h-screen flex flex-col bg-black text-white font-courier">
+<div class="min-h-screen flex flex-col bg-custom text-white font-courier">
   <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
     <div class="flex flex-col justify-center fade-in w-full md:w-1/2 pr-8 md:pr-8" class:visible={fadeIn} style="max-width:600px; margin-left:5vw;">
       <div class="medium-font mb-12" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to App">Tetra</div>

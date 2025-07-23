@@ -65,7 +65,7 @@
 }
 </style>
 
-<div class="min-h-screen flex flex-col bg-black text-white font-courier">
+<div class="min-h-screen flex flex-col bg-custom text-white font-courier">
   <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
     <div class="flex flex-col justify-center w-full md:w-1/2 pr-8 md:pr-8 align-col">
       <div class="medium-font mb-12 font-courier" style="text-align:left;">{data.title}</div>

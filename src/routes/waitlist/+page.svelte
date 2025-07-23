@@ -103,7 +103,7 @@ async function handleSubmit(e: Event) {
 }
 </style>
 
-<div class="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+<div class="min-h-screen flex flex-col items-center justify-center bg-custom text-white">
   <div class="flex flex-col items-center fade-in flex-1 justify-center" class:visible={fadeIn} class:slide-up={sliding}>
     <a href="/" class="font-normal font-courier bigword"
       on:mouseenter={() => moving = true}

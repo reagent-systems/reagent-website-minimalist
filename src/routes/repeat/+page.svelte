@@ -59,7 +59,7 @@ async function handleBackNav(e: MouseEvent) {
 }
 </style>
 
-<div class="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+<div class="min-h-screen flex flex-col items-center justify-center bg-custom text-white">
   <div class="flex flex-col items-center fade-in flex-1 justify-center" class:visible={fadeIn} class:slide-up={sliding}>
     <a href="/" class="text-[6vw] font-normal font-helvetica bigword"
       on:mouseenter={() => moving = true}

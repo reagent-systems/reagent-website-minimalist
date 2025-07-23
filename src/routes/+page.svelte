@@ -101,7 +101,7 @@ async function handleMainNav(e: MouseEvent, href: string) {
 }
 </style>
 
-<div class="min-h-screen flex flex-col justify-between bg-black text-white dark:bg-black dark:text-white bg-white text-black transition-colors duration-300">
+<div class="min-h-screen flex flex-col justify-between bg-custom text-white transition-colors duration-300">
   <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-left={sliding}>
     <div class="flex flex-col big-words group" style="gap:0;">
       <a href="/data" class="font-normal text-left leading-none bigword font-helvetica"
