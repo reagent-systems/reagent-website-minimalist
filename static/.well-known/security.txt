@@ -1,0 +1,5 @@
+Contact: mailto:security@reagent-systems.com
+Expires: 2026-07-23T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://reagent-systems.com/.well-known/security.txt
+Policy: https://reagent-systems.com/security-policy 

@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
- 
-Sitemap: /sitemap.xml 
+
+# Disallow admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /favicon.svg
+
+# Crawl delay (optional - helps with server load)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://reagent-systems.com/sitemap.xml 

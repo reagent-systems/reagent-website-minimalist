@@ -1,0 +1,4 @@
+# Reagent Systems - app-ads.txt
+# This file is for mobile app advertising transparency
+# Currently no mobile app advertising partners
+# Placeholder for future mobile app ad partnerships 

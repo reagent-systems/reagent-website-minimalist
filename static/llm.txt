@@ -1,0 +1,55 @@
+# Reagent Systems - AI Agent Platform
+
+## About Us
+Reagent Systems is a cutting-edge AI company focused on decentralized federated learning networks and intelligent agent systems. We develop quantized language models, autonomous agents, and privacy-preserving AI applications.
+
+## Core Technologies
+- Decentralized federated learning networks
+- FP4 quantized language models
+- Forward-forward algorithm implementation
+- Privacy-preserving AI agents
+- Edge computing optimization
+
+## Main Products & Services
+
+### AI Agents
+- Simple Agent: Basic AI agent implementation
+- Multi-agent systems for complex tasks
+- Self-improving agents with learning capabilities
+- Privacy-preserving agent architecture
+
+### Applications
+- Data analysis and processing tools
+- Model training and deployment platforms
+- Agent development frameworks
+- Edge computing solutions
+
+### Models
+- Quantized language models (FP4)
+- Federated learning implementations
+- Ternary weight architectures
+- Hardware-optimized models
+
+## Key Pages
+- Home: https://reagent-systems.com/
+- Vision: https://reagent-systems.com/vision
+- Team: https://reagent-systems.com/team
+- Agent: https://reagent-systems.com/agent
+- App: https://reagent-systems.com/app
+- Data: https://reagent-systems.com/data
+- Model: https://reagent-systems.com/model
+- Waitlist: https://reagent-systems.com/waitlist
+
+## Technical Focus
+- Federated learning for privacy
+- Model quantization for efficiency
+- Edge computing deployment
+- Decentralized AI training
+- Hardware module integration
+
+## Contact & Updates
+- Join waitlist: https://reagent-systems.com/waitlist
+- Team information: https://reagent-systems.com/team
+- Vision and roadmap: https://reagent-systems.com/vision
+
+Last updated: July 23, 2025 

@@ -1,0 +1,26 @@
+/* TEAM */
+    Founder: ThyFriendlyFox
+    Developer: BentlyBro
+    Developer: COWTEAH
+    Developer: SpikeFelion
+    Developer: Rubick
+
+/* SITE */
+    Last update: 2025/07/23
+    Language: English
+    Doctype: HTML5
+    IDE: VS Code
+    Standards: HTML5, CSS3, JavaScript
+    Components: Svelte, TypeScript
+    Software: Vite, Playwright
+
+/* THANKS */
+    Name: AutoGPT Research Lab
+    Name: Open Source Community
+    Name: AI Research Community
+
+/* SITE */
+    Name: Reagent Systems
+    From: 2025
+    Twitter: @reagent_systems
+    GitHub: reagent-systems 

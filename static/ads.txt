@@ -1,0 +1,4 @@
+# Reagent Systems - ads.txt
+# This file is for advertising transparency
+# Currently no advertising partners
+# Placeholder for future ad partnerships 
