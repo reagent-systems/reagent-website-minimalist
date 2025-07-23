@@ -21,11 +21,11 @@ function stripMarkdown(md: string) {
 }
 
 export async function load() {
-  const repo = 'reagent-systems/dither';
+  const repo = 'reagent-systems/deku';
   const repoUrl = `https://github.com/${repo}`;
-  const res = await fetch('https://raw.githubusercontent.com/reagent-systems/dither/main/README.md');
+  const res = await fetch('https://raw.githubusercontent.com/reagent-systems/deku/main/README.md');
   if (!res.ok) {
-    return { title: 'Dither', content: 'Failed to fetch README from GitHub.', link: repoUrl };
+    return { title: 'Deku', content: 'Failed to fetch README from GitHub.', link: repoUrl };
   }
   const markdown = await res.text();
   // Extract the first line as title if it starts with #

@@ -341,5 +341,8 @@ onDestroy(() => {
     <a href="https://github.com/reagent-systems/Simple-Agent-Core" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
       https://github.com/reagent-systems/Simple-Agent-Core
     </a>
+    <a href="https://github.com/reagent-systems/Simple-Agent-Tools" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
+      https://github.com/reagent-systems/Simple-Agent-Tools
+    </a>
   </div>
 </div> 

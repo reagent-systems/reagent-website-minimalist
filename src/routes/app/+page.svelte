@@ -70,11 +70,11 @@ async function handleBackNav(e: MouseEvent) {
       App
     </a>
     <div class="flex flex-row items-center justify-center space-x-16" style="margin-top:48px;">
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Orca</a>
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Spark</a>
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Tetra</a>
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">RigIDE</a>
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Dither</a>
+      <a href="/orca" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Orca</a>
+      <a href="/spark" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Spark</a>
+      <a href="/tetra" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Tetra</a>
+      <a href="/rigide" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">RigIDE</a>
+      <a href="/dither" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Dither</a>
     </div>
   </div>
 </div> 

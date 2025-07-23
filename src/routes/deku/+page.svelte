@@ -1,5 +1,9 @@
 <script lang="ts">
   export let data;
+  
+  function handleBack() {
+    window.location.href = '/';
+  }
 </script>
 
 <style>
@@ -8,7 +12,11 @@
 }
 .medium-font {
   font-size: 2rem;
-  cursor: default;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.medium-font:hover, .medium-font:focus {
+  transform: translateY(-6px);
 }
 .underline-animate {
   position: relative;
@@ -68,7 +76,7 @@
 <div class="min-h-screen flex flex-col bg-custom text-white font-courier">
   <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
     <div class="flex flex-col justify-center w-full md:w-1/2 pr-8 md:pr-8 align-col">
-      <div class="medium-font mb-12 font-courier" style="text-align:left;">{data.title}</div>
+      <div class="medium-font mb-12 font-courier" style="text-align:left;" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Home">{data.title}</div>
       <div class="scrollbox w-full mb-16">
         {data.content}
       </div>
