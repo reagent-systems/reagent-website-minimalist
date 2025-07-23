@@ -70,11 +70,11 @@ async function handleBackNav(e: MouseEvent) {
       Team
     </a>
     <div class="flex flex-row items-center justify-center space-x-16 fade-in" class:visible={fadeIn} style="margin-top:48px;">
-      <div class="text-xl font-courier">Kyle Steel</div>
-      <div class="text-xl font-courier">BentlyBro</div>
-      <div class="text-xl font-courier">Ethan Shelton</div>
-      <div class="text-xl font-courier">Colton Frear</div>
-      <div class="text-xl font-courier">Alexey Kuznetsov</div>
+      <a href="/thyfriendlyfox" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Kyle Steel</a>
+      <a href="/bentlybro" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">BentlyBro</a>
+      <a href="/ethanshelton" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Ethan Shelton</a>
+      <a href="/coltonfrear" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Colton Frear</a>
+      <a href="/alexeykuznetsov" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Alexey Kuznetsov</a>
     </div>
   </div>
 </div> 
