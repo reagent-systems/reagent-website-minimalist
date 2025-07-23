@@ -47,6 +47,51 @@ function handleBack() {
   display: flex;
   flex: 1;
 }
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .left-column {
+    flex: none;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .right-column {
+    flex: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .image-placeholder {
+    height: 200px;
+    margin-top: 0;
+    width: 100%;
+  }
+  .profile-container {
+    padding: 1rem;
+    padding-top: 6rem;
+  }
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .footer .left-column,
+  .footer .right-column {
+    flex: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer .team-names {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .footer .team-name-container {
+    text-align: left;
+    min-width: auto;
+  }
+}
 .left-column {
   flex: 2;
   padding-right: 2rem;
@@ -82,12 +127,28 @@ function handleBack() {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 2rem;
+  gap: 4rem;
 }
 .team-name-container {
   min-width: 180px;
   text-align: right;
   white-space: nowrap;
+}
+.underline-animate {
+  position: relative;
+}
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.underline-animate:hover::after, .underline-animate:focus::after {
+  width: 100%;
 }
 .image-placeholder {
   border: 1px solid white;
@@ -132,16 +193,12 @@ function handleBack() {
     
     <!-- Footer -->
     <div class="footer">
-      <div class="left-column">
-        https://www.github.com/thyfriendlyfox
-      </div>
-      <div class="right-column">
-        <div class="team-names">
-          <div class="team-name-container">Ethan Shelton</div>
-          <div class="team-name-container">BentlyBro</div>
-          <div class="team-name-container">Colton Frear</div>
-          <div class="team-name-container">Alexey Kuznetsov</div>
-        </div>
+      <a href="https://www.github.com/thyfriendlyfox" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">https://www.github.com/thyfriendlyfox</a>
+      <div class="team-names">
+        <a href="/ethanshelton" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Ethan Shelton</a>
+        <a href="/bentlybro" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">BentlyBro</a>
+        <a href="/coltonfrear" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Colton Frear</a>
+        <a href="/alexeykuznetsov" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Alexey Kuznetsov</a>
       </div>
     </div>
   </div>
