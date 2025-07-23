@@ -189,25 +189,14 @@ onDestroy(() => {
 }
 
 /* Chat interface styles */
-.chat-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 60vh;
-  max-height: 600px;
-  position: relative;
-  margin-bottom: 1rem;
-}
-
 .chat-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  gap: 1rem;
   overflow-y: auto;
-  overflow-x: hidden;
-  background: #000;
-  position: relative;
-  padding-bottom: 1rem;
-  min-height: 0;
+  padding-right: 1rem;
 }
 
 .message {
@@ -218,62 +207,47 @@ onDestroy(() => {
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
   line-height: 1.4;
-  margin-bottom: 1rem;
   word-wrap: break-word;
-  transition: all 0.3s ease;
+  width: 60%;
+  max-width: 400px;
+}
+
+.message.user {
+  align-self: flex-end;
+  margin-left: auto;
 }
 
 .message.agent {
-  width: 45%;
   align-self: flex-start;
   margin-right: auto;
 }
 
-.message.user {
-  width: 60%;
-  align-self: flex-end;
-  margin-left: auto;
-}
-
-/* Center the first message when chat is empty */
-.chat-container:has(.message:only-child) {
-  justify-content: center;
-  align-items: center;
-  padding-top: 20vh;
-}
-
-.chat-container:has(.message:only-child) .message {
-  width: 80%;
-  align-self: center;
-  margin: 0;
-}
-
-.message-input {
+.chat-input {
+  border: 1px solid white;
+  padding: 1rem;
   display: flex;
-  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
   width: 60%;
+  max-width: 400px;
   align-self: flex-end;
   margin-left: auto;
-  margin-top: 1rem;
-  position: relative;
-  z-index: 10;
+  margin-top: auto;
 }
 
 .input-field {
-  width: 100%;
+  flex: 1;
   background: transparent;
-  border: 1px solid white;
+  border: none;
   color: white;
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
-  padding: 1rem;
-  resize: none;
-  min-height: 80px;
-  margin-bottom: 0.5rem;
+  padding: 0;
+  outline: none;
 }
 
-.input-field:focus {
-  outline: none;
+.input-field::placeholder {
+  color: #666;
 }
 
 .send-button {
@@ -282,10 +256,9 @@ onDestroy(() => {
   border: 1px solid white;
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: all 0.2s;
-  align-self: flex-end;
 }
 
 .send-button:hover:not(:disabled) {
@@ -325,51 +298,42 @@ onDestroy(() => {
     </div>
     
     <!-- Chat Interface Container -->
-    <div class="w-full md:w-1/2 pr-4 md:pr-8 fade-in" class:visible={fadeIn}>
+    <div class="w-full md:w-1/2 pr-4 md:pr-8 fade-in flex flex-col" class:visible={fadeIn} style="height: 60vh; max-height: 500px;">
       {#if connectionError}
         <div class="error-message">
           {connectionError}
         </div>
       {/if}
       
-      <div class="chat-wrapper">
-        <div class="chat-container">
-          {#if messages.length === 0}
-            <div class="message agent">
-              🤖 Hello! I'm Simple-Agent. Send me a task and I'll help you complete it.
-            </div>
-          {:else}
-            {#each messages as message}
-              <div class="message {message.type}">
-                {message.content}
-              </div>
-            {/each}
-          {/if}
+      <div class="chat-container">
+        {#each messages as message}
+          <div class="message {message.type}">
+            {message.content}
+          </div>
+        {/each}
+        
+        <div class="chat-input">
+          <input
+            bind:value={currentMessage}
+            on:keypress={handleKeyPress}
+            placeholder="Enter your task or response..."
+            class="input-field"
+            disabled={!connected || isAgentRunning && !isWaitingForInput}
+          />
+          <button
+            on:click={sendMessage}
+            disabled={!connected || !currentMessage.trim() || (isAgentRunning && !isWaitingForInput)}
+            class="send-button"
+          >
+            {#if isWaitingForInput}
+              Send
+            {:else if isAgentRunning}
+              Running...
+            {:else}
+              Enter
+            {/if}
+          </button>
         </div>
-      </div>
-      
-      <div class="message-input">
-        <textarea
-          bind:value={currentMessage}
-          on:keypress={handleKeyPress}
-          placeholder="Enter your task or response..."
-          class="input-field"
-          disabled={!connected || isAgentRunning && !isWaitingForInput}
-          rows="1"
-        ></textarea>
-        <button
-          on:click={sendMessage}
-          disabled={!connected || !currentMessage.trim() || (isAgentRunning && !isWaitingForInput)}
-          class="send-button"
-        >
-          {#if isWaitingForInput}
-            Send
-          {:else if isAgentRunning}
-            Running...
-          {:else}
-            Send
-          {/if}
-        </button>
       </div>
     </div>
   </div>
