@@ -151,12 +151,12 @@ async function handleMainNav(e: MouseEvent, href: string) {
       </div>
       <!-- Bottom row (2 links) - visible on mobile, hidden on desktop -->
       <div class="flex space-x-16 md:hidden">
-        <a href="#" class="text-lg underline-animate font-courier">Pitch</a>
+        <a href="https://docs.google.com/presentation/d/13LGHzAeZeXG-gWLgqegucYuGSzbpe5yVlbdEOyuoeZM/edit?pli=1&slide=id.g36304d389ef_0_10#slide=id.g36304d389ef_0_10" class="text-lg underline-animate font-courier">Pitch</a>
         <a href="https://discord.reagent-systems.com" class="text-lg underline-animate font-courier">Discord</a>
       </div>
       <!-- Desktop layout (5 links in a row) - hidden on mobile, visible on desktop -->
       <div class="hidden md:flex space-x-16">
-        <a href="#" class="text-lg underline-animate font-courier">Pitch</a>
+        <a href="https://docs.google.com/presentation/d/13LGHzAeZeXG-gWLgqegucYuGSzbpe5yVlbdEOyuoeZM/edit?pli=1&slide=id.g36304d389ef_0_10#slide=id.g36304d389ef_0_10" class="text-lg underline-animate font-courier">Pitch</a>
         <a href="/waitlist" class="text-lg underline-animate font-courier">Waitlist</a>
         <a href="/team" class="text-lg underline-animate font-courier">Team</a>
         <a href="https://x.com/Reagent_Systems" class="text-lg underline-animate font-courier">Social</a>

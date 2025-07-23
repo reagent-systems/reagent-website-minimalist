@@ -70,9 +70,9 @@ async function handleBackNav(e: MouseEvent) {
       Repeat
     </a>
     <div class="flex flex-row items-center justify-center space-x-16" style="margin-top:48px;">
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Vision</a>
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Comunity</a>
-      <a href="#" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Process</a>
+      <a href="/vision" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Vision</a>
+      <a href="/community" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Community</a>
+      <a href="/process" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Process</a>
     </div>
   </div>
 </div> 
