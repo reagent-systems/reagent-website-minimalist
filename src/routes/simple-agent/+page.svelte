@@ -295,6 +295,11 @@ onDestroy(() => {
       <div class="text-lg leading-relaxed w-full text-justify break-words mb-16">
         SimpleAgent is designed with the belief that AI agents don't need to be complex to be useful. By focusing on a small set of core operations and using function calling for all interactions, SimpleAgent remains easy to understand, modify, and extend while providing advanced features like dynamic tool loading, loop detection, and intelligent execution management.
       </div>
+      <div class="mb-8">
+        <a href="/simple-agent/docs" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
+          📚 View Documentation
+        </a>
+      </div>
     </div>
     
     <!-- Chat Interface Container -->
@@ -341,8 +346,8 @@ onDestroy(() => {
     <a href="https://github.com/reagent-systems/Simple-Agent-Core" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
       https://github.com/reagent-systems/Simple-Agent-Core
     </a>
-    <a href="https://github.com/reagent-systems/Simple-Agent-Tools" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
+    <!-- <a href="https://github.com/reagent-systems/Simple-Agent-Tools" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
       https://github.com/reagent-systems/Simple-Agent-Tools
-    </a>
+    </a> -->
   </div>
 </div> 
