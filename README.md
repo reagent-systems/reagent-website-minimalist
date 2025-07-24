@@ -213,4 +213,4 @@ This project is open source. See [LICENSE](LICENSE) for details.
 
 ---
 
-*Built with ❤️ by the Reagent Systems team*
+*Built with ❤️ by Team Reagent*
