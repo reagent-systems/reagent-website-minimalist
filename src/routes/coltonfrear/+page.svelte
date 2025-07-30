@@ -1,0 +1,197 @@
+<script lang="ts">
+import { onMount } from 'svelte';
+let fadeIn = false;
+
+onMount(() => {
+  setTimeout(() => { fadeIn = true; }, 10);
+});
+
+function handleBack() {
+  window.location.href = '/';
+}
+</script>
+
+<style>
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-in.visible {
+  opacity: 1;
+}
+.font-courier {
+  font-family: 'Courier New', Courier, monospace;
+}
+.medium-font {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.medium-font:hover, .medium-font:focus {
+  transform: translateY(-6px);
+}
+.bordered-box {
+  border: 1px solid white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  padding-top: 12rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.main-content {
+  display: flex;
+  flex: 1;
+}
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .left-column {
+    flex: none;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .right-column {
+    flex: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .image-placeholder {
+    height: 200px;
+    margin-top: 0;
+    width: 100%;
+  }
+  .profile-container {
+    padding: 1rem;
+    padding-top: 6rem;
+  }
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .footer .left-column,
+  .footer .right-column {
+    flex: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer .team-names {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .footer .team-name-container {
+    text-align: left;
+    min-width: auto;
+  }
+}
+.left-column {
+  flex: 2;
+  padding-right: 2rem;
+}
+.right-column {
+  flex: 1;
+  padding-left: 2rem;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+}
+.image-placeholder {
+  border: 1px solid white;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  flex: 1;
+}
+.bio-text {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 1rem;
+}
+.team-names {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 4rem;
+}
+.team-name-container {
+  min-width: 180px;
+  text-align: right;
+  white-space: nowrap;
+}
+.underline-animate {
+  position: relative;
+}
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.underline-animate:hover::after, .underline-animate:focus::after {
+  width: 100%;
+}
+</style>
+
+<div class="min-h-screen bg-custom text-white font-courier">
+  <div class="profile-container fade-in" class:visible={fadeIn}>
+    <div class="main-content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <div class="mb-8">
+          <div class="medium-font" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Home">
+            Colton Frear
+          </div>
+        </div>
+        
+        <div class="mb-6">
+          <div>Education: Florida Polytechnic University</div>
+          <div>Degree: Masters in Mechanical Engineering</div>
+          <div>Experience: DoD Prime Contractors</div>
+          <div>Specialization: Engineering Support & Program Management</div>
+        </div>
+        
+        <div class="bio-text">
+          My name is Colton Frear, I graduated from Florida Polytechnic University with a Masters in Mechanical Engineering. My first job out of college was as a Liaison Engineer for General Dynamics Electric Boat In Newport News Virginia. While at Electric Boat I provided engineering support on the Virginia Class Nuclear Submarine program for NAVSEA. After a short time there, I moved to Palmdale California to work for Northrop Grumman Aeronautics Systems. During my time with these prime contractors I have become intimately familiar with DoD program requirements and expectations as well as improving my general technical and engineering knowledge.
+        </div>
+      </div>
+      
+      <!-- Right Column -->
+      <div class="right-column">
+        <div class="image-placeholder">
+          Image/Slideshow
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <div class="text-lg font-courier">Colton Frear - Mechanical Engineer</div>
+      <div class="team-names">
+        <a href="/thyfriendlyfox" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Kyle Steel</a>
+        <a href="/ethanshelton" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Ethan Shelton</a>
+        <a href="/bentlybro" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">BentlyBro</a>
+        <a href="/alexeykuznetsov" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Alexey Kuznetsov</a>
+      </div>
+    </div>
+  </div>
+</div> 
