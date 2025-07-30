@@ -57,6 +57,23 @@ async function handleBackNav(e: MouseEvent) {
   width: 100%;
   left: 50%;
 }
+
+.team-names {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 48px;
+}
+
+@media (max-width: 768px) {
+  .team-names {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 32px;
+  }
+}
 </style>
 
 <div class="min-h-screen flex flex-col items-center justify-center bg-custom text-white">
@@ -69,7 +86,7 @@ async function handleBackNav(e: MouseEvent) {
       style="cursor:pointer;">
       Team
     </a>
-    <div class="flex flex-row items-center justify-center space-x-16 fade-in" class:visible={fadeIn} style="margin-top:48px;">
+    <div class="team-names fade-in" class:visible={fadeIn}>
       <a href="/thyfriendlyfox" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Kyle Steel</a>
       <a href="/bentlybro" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">BentlyBro</a>
       <a href="/ethanshelton" class="text-xl font-courier underline-animate" style="color:inherit; text-decoration:none;">Ethan Shelton</a>

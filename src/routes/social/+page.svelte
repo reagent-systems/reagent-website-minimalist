@@ -31,12 +31,15 @@
 .font-courier {
   font-family: 'Courier New', Courier, monospace;
 }
-.medium-font {
-  font-size: 2rem;
+.connect-header {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  user-select: none;
 }
-.medium-font:hover, .medium-font:focus {
+.connect-header:hover, .connect-header:focus {
   transform: translateY(-6px);
 }
 .social-container {
@@ -106,14 +109,12 @@
   color: #999;
   word-break: break-all;
 }
-.back-button {
-  position: absolute;
-  top: 6rem;
-  left: 2rem;
-}
 @media (max-width: 768px) {
   .social-container {
     padding: 2rem 1rem;
+  }
+  .connect-header {
+    font-size: 2rem;
   }
   .social-links {
     grid-template-columns: 1fr;
@@ -134,23 +135,15 @@
   .social-name {
     font-size: 1.3rem;
   }
-  .back-button {
-    top: 4rem;
-    left: 1rem;
-  }
 }
 </style>
 
 <div class="min-h-screen bg-custom text-white font-courier">
-  <div class="back-button">
-    <div class="medium-font" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Home">
-      Social
-    </div>
-  </div>
-
   <div class="social-container fade-in" class:visible={fadeIn}>
     <div class="social-header">
-      <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: #fff;">Connect With Us</h1>
+      <h1 class="connect-header" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Connect With Us - Back to Home">
+        Connect With Us
+      </h1>
       <p style="font-size: 1.1rem; color: #ccc; line-height: 1.6;">
         Join our community and stay updated with the latest developments in decentralized AI and federated learning.
       </p>
