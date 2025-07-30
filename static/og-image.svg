@@ -1,0 +1,69 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F0F0F"/>
+  
+  <!-- Grid pattern overlay -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Main content area -->
+  <rect x="80" y="80" width="1040" height="470" fill="#0F0F0F" stroke="#333" stroke-width="2" rx="12"/>
+  
+  <!-- Logo area -->
+  <circle cx="200" cy="200" r="50" fill="#333" stroke="#555" stroke-width="2"/>
+  <text x="200" y="210" text-anchor="middle" fill="white" font-family="monospace" font-size="24" font-weight="bold">R</text>
+  
+  <!-- Main title -->
+  <text x="280" y="180" fill="white" font-family="monospace" font-size="48" font-weight="bold">
+    Reagent Systems
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="280" y="220" fill="#cccccc" font-family="monospace" font-size="24">
+    AI Agent Platform
+  </text>
+  
+  <!-- Description -->
+  <text x="120" y="300" fill="#aaaaaa" font-family="monospace" font-size="20">
+    Decentralized federated learning networks and intelligent AI agents
+  </text>
+  <text x="120" y="330" fill="#aaaaaa" font-family="monospace" font-size="20">
+    Privacy-preserving AI solutions for edge computing
+  </text>
+  
+  <!-- Feature highlights -->
+  <g transform="translate(120, 380)">
+    <!-- Agent icon -->
+    <rect x="0" y="0" width="60" height="60" fill="#1a1a1a" stroke="#444" stroke-width="1" rx="8"/>
+    <text x="30" y="38" text-anchor="middle" fill="#4CAF50" font-family="monospace" font-size="24">🤖</text>
+    <text x="30" y="80" text-anchor="middle" fill="#888" font-family="monospace" font-size="12">Agents</text>
+    
+    <!-- Data icon -->
+    <rect x="100" y="0" width="60" height="60" fill="#1a1a1a" stroke="#444" stroke-width="1" rx="8"/>
+    <text x="130" y="38" text-anchor="middle" fill="#2196F3" font-family="monospace" font-size="24">📊</text>
+    <text x="130" y="80" text-anchor="middle" fill="#888" font-family="monospace" font-size="12">Data</text>
+    
+    <!-- Model icon -->
+    <rect x="200" y="0" width="60" height="60" fill="#1a1a1a" stroke="#444" stroke-width="1" rx="8"/>
+    <text x="230" y="38" text-anchor="middle" fill="#FF9800" font-family="monospace" font-size="24">🧠</text>
+    <text x="230" y="80" text-anchor="middle" fill="#888" font-family="monospace" font-size="12">Models</text>
+    
+    <!-- Privacy icon -->
+    <rect x="300" y="0" width="60" height="60" fill="#1a1a1a" stroke="#444" stroke-width="1" rx="8"/>
+    <text x="330" y="38" text-anchor="middle" fill="#9C27B0" font-family="monospace" font-size="24">🔒</text>
+    <text x="330" y="80" text-anchor="middle" fill="#888" font-family="monospace" font-size="12">Privacy</text>
+  </g>
+  
+  <!-- Website URL -->
+  <text x="1080" y="580" text-anchor="end" fill="#666" font-family="monospace" font-size="18">
+    reagent-systems.com
+  </text>
+  
+  <!-- Accent lines -->
+  <line x1="280" y1="240" x2="800" y2="240" stroke="#333" stroke-width="2"/>
+  <line x1="80" y1="550" x2="1120" y2="550" stroke="#333" stroke-width="1"/>
+</svg> 

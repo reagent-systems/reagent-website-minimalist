@@ -1,0 +1,40 @@
+# AI Training and Data Usage Policy
+# Reagent Systems - AI Agent Platform
+# Website: https://reagent-systems.com
+
+# GENERAL INFORMATION
+# Company: Reagent Systems
+# Domain: reagent-systems.com
+# Industry: Artificial Intelligence, Machine Learning, Edge Computing
+# Focus: Decentralized federated learning, Privacy-preserving AI agents
+
+# CRAWLING PERMISSIONS
+# AI training crawlers: Limited access
+# Research purposes: Contact required
+# Commercial use: Contact required
+
+# CONTACT FOR AI/ML PARTNERSHIPS
+# General inquiries: https://reagent-systems.com/waitlist
+# Business development: https://reagent-systems.com/community
+# Technical discussions: https://reagent-systems.com/team
+
+# NOTABLE CONTENT AREAS
+# Research insights: /vision
+# Product information: /app, /data, /model, /agent
+# Community resources: /community
+# Technical implementations: /simple-agent
+
+# DATA POLICIES
+# User privacy: Strictly protected via federated learning
+# Training data: Decentralized approach
+# Model sharing: Available through our platform
+# Edge deployment: Optimized for privacy
+
+# AI CAPABILITIES WE OFFER
+# Quantized language models (FP4)
+# Federated learning networks
+# Privacy-preserving agents
+# Edge computing optimization
+# Forward-forward algorithm implementation
+
+# LAST UPDATED: July 30, 2025 

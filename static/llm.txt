@@ -32,13 +32,32 @@ Reagent Systems is a cutting-edge AI company focused on decentralized federated 
 
 ## Key Pages
 - Home: https://reagent-systems.com/
-- Vision: https://reagent-systems.com/vision
-- Team: https://reagent-systems.com/team
-- Agent: https://reagent-systems.com/agent
-- App: https://reagent-systems.com/app
-- Data: https://reagent-systems.com/data
-- Model: https://reagent-systems.com/model
+- Vision & Technology: https://reagent-systems.com/vision
+- Team & Expertise: https://reagent-systems.com/team
+- AI Agent Demo: https://reagent-systems.com/simple-agent
+- Agent Overview: https://reagent-systems.com/agent
+- App Platform: https://reagent-systems.com/app
+- Data Processing: https://reagent-systems.com/deku
+- Model Architecture: https://reagent-systems.com/reku
+- Community Hub: https://reagent-systems.com/community
+- Social Links: https://reagent-systems.com/social
+- Benchmarks: https://reagent-systems.com/scores
 - Waitlist: https://reagent-systems.com/waitlist
+
+# Team Member Pages
+- ThyFriendlyFox: https://reagent-systems.com/thyfriendlyfox
+- Colton Frear: https://reagent-systems.com/coltonfrear
+- BentlyBro: https://reagent-systems.com/bentlybro
+
+# Product Prototypes
+- Deku (Data/FL): https://reagent-systems.com/deku
+- Reku (Models): https://reagent-systems.com/reku
+- Tetra: https://reagent-systems.com/tetra
+- Orc: https://reagent-systems.com/orc
+- Spark: https://reagent-systems.com/spark
+- Dither: https://reagent-systems.com/dither
+- Rigide: https://reagent-systems.com/rigide
+- Assistify: https://reagent-systems.com/assistify
 
 ## Technical Focus
 - Federated learning for privacy
@@ -52,4 +71,4 @@ Reagent Systems is a cutting-edge AI company focused on decentralized federated 
 - Team information: https://reagent-systems.com/team
 - Vision and roadmap: https://reagent-systems.com/vision
 
-Last updated: July 23, 2025 
+Last updated: July 30, 2025 

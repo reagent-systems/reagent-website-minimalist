@@ -5,14 +5,61 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
+Disallow: /_app/
+Disallow: /node_modules/
 
-# Allow important files
+# Allow important files and directories
 Allow: /sitemap.xml
 Allow: /robots.txt
 Allow: /favicon.svg
+Allow: /og-image.svg
+Allow: /manifest.json
+Allow: /.well-known/
 
-# Crawl delay (optional - helps with server load)
+# AI Training Crawlers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Bard
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+# Research and Academic Crawlers
+User-agent: ia_archiver
+Allow: /
+
+User-agent: Wayback
+Allow: /
+
+# Social Media Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# Crawl delay (helps with server load)
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://reagent-systems.com/sitemap.xml 
+Sitemap: https://reagent-systems.com/sitemap.xml
+
+# Additional resources
+Sitemap: https://reagent-systems.com/.well-known/ai.txt 

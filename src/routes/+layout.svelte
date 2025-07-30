@@ -36,12 +36,7 @@
 
 @media (max-width: 768px) {
   .logo-container {
-    top: 1rem;
-    left: 1rem;
-  }
-  
-  .logo {
-    height: 32px;
+    display: none;
   }
   
   .auth-container {

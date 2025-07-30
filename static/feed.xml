@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Reagent Systems - AI Agent Platform</title>
+    <description>Latest updates from Reagent Systems on decentralized federated learning networks and intelligent AI agents</description>
+    <link>https://reagent-systems.com</link>
+    <language>en-us</language>
+    <managingEditor>team@reagent-systems.com (Reagent Systems Team)</managingEditor>
+    <webMaster>admin@reagent-systems.com (Reagent Systems)</webMaster>
+    <lastBuildDate>Tue, 30 Jul 2025 12:00:00 GMT</lastBuildDate>
+    <pubDate>Tue, 30 Jul 2025 12:00:00 GMT</pubDate>
+    <generator>Reagent Systems</generator>
+    <docs>https://reagent-systems.com/rss</docs>
+    <ttl>1440</ttl>
+    <image>
+      <url>https://reagent-systems.com/favicon.svg</url>
+      <title>Reagent Systems</title>
+      <link>https://reagent-systems.com</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    <atom:link href="https://reagent-systems.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Introducing Simple Agent - Interactive AI Agent Platform</title>
+      <description>Experience our cutting-edge AI agent system with real-time interaction, federated learning capabilities, and privacy-preserving architecture.</description>
+      <link>https://reagent-systems.com/simple-agent</link>
+      <guid isPermaLink="true">https://reagent-systems.com/simple-agent</guid>
+      <pubDate>Tue, 30 Jul 2025 10:00:00 GMT</pubDate>
+      <dc:creator>Reagent Systems Team</dc:creator>
+      <category>AI Agents</category>
+      <category>Product Launch</category>
+    </item>
+    
+    <item>
+      <title>Join Our Developer Community</title>
+      <description>Connect with AI researchers, developers, and enthusiasts working on federated learning and edge computing solutions.</description>
+      <link>https://reagent-systems.com/community</link>
+      <guid isPermaLink="true">https://reagent-systems.com/community</guid>
+      <pubDate>Mon, 29 Jul 2025 14:00:00 GMT</pubDate>
+      <dc:creator>Reagent Systems Team</dc:creator>
+      <category>Community</category>
+      <category>Announcements</category>
+    </item>
+    
+    <item>
+      <title>Deku: Decentralized Federated Learning Architecture</title>
+      <description>Learn about our innovative approach to privacy-preserving machine learning with decentralized federated training networks.</description>
+      <link>https://reagent-systems.com/deku</link>
+      <guid isPermaLink="true">https://reagent-systems.com/deku</guid>
+      <pubDate>Sun, 28 Jul 2025 16:00:00 GMT</pubDate>
+      <dc:creator>Reagent Systems Team</dc:creator>
+      <category>Technology</category>
+      <category>Federated Learning</category>
+    </item>
+    
+    <item>
+      <title>Reku: Next-Generation Model Architecture</title>
+      <description>Discover our quantized model architecture optimized for edge computing and privacy-preserving AI applications.</description>
+      <link>https://reagent-systems.com/reku</link>
+      <guid isPermaLink="true">https://reagent-systems.com/reku</guid>
+      <pubDate>Sat, 27 Jul 2025 12:00:00 GMT</pubDate>
+      <dc:creator>Reagent Systems Team</dc:creator>
+      <category>Technology</category>
+      <category>Model Architecture</category>
+    </item>
+    
+    <item>
+      <title>Our Vision for Privacy-Preserving AI</title>
+      <description>Read about our comprehensive vision for the future of decentralized AI, federated learning, and edge computing solutions.</description>
+      <link>https://reagent-systems.com/vision</link>
+      <guid isPermaLink="true">https://reagent-systems.com/vision</guid>
+      <pubDate>Fri, 26 Jul 2025 09:00:00 GMT</pubDate>
+      <dc:creator>Reagent Systems Team</dc:creator>
+      <category>Vision</category>
+      <category>Strategy</category>
+    </item>
+    
+  </channel>
+</rss> 
