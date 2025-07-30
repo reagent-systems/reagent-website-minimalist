@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import AuthButton from '$lib/AuthButton.svelte';
 
 	let { children } = $props();
 </script>
@@ -26,6 +27,13 @@
   width: auto;
 }
 
+.auth-container {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
 @media (max-width: 768px) {
   .logo-container {
     top: 1rem;
@@ -35,6 +43,11 @@
   .logo {
     height: 32px;
   }
+  
+  .auth-container {
+    top: 1rem;
+    right: 1rem;
+  }
 }
 </style>
 
@@ -42,6 +55,10 @@
   <a href="/" class="logo-link" aria-label="Reagent Systems - Home">
     <img src="/reagent-2-full.png" alt="Reagent Systems" class="logo" />
   </a>
+</div>
+
+<div class="auth-container">
+  <AuthButton />
 </div>
 
 {@render children()}

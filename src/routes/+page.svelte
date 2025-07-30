@@ -105,35 +105,35 @@ async function handleMainNav(e: MouseEvent, href: string) {
   <div class="flex-1 flex flex-col items-center justify-center fade-in" class:visible={fadeIn} class:slide-left={sliding}>
     <div class="flex flex-col big-words group" style="gap:0;">
       <a href="/team" class="font-normal text-left leading-none bigword font-helvetica"
-        style="margin-top:2px; font-size: clamp(8rem, 6vw, 12rem);"
+        style="font-size: clamp(8rem, 6vw, 12rem);"
         class:moving={moving[0]} class:hovered={hovered[0]}
         on:mouseenter={() => highlight(0)} on:mouseleave={() => clearHighlight(0)}
         on:click={(e) => handleMainNav(e, '/team')}>
         <span>Team</span>
       </a>
-      <a href="/scores" class="font-normal text-left leading-none bigword font-helvetica"
-        style="margin-top:-2px; font-size: clamp(8rem, 6vw, 12rem);"
+      <a href="/simple-agent" class="font-normal text-left leading-none bigword font-helvetica"
+        style="font-size: clamp(8rem, 6vw, 12rem);"
         class:moving={moving[1]} class:hovered={hovered[1]}
         on:mouseenter={() => highlight(1)} on:mouseleave={() => clearHighlight(1)}
-        on:click={(e) => handleMainNav(e, '/scores')}>
-        <span>Scores</span>
+        on:click={(e) => handleMainNav(e, '/simple-agent')}>
+        <span>Agent</span>
       </a>
-      <a href="/social" class="font-normal text-right leading-none bigword font-helvetica"
-        style="margin-top:-8px; font-size: clamp(8rem, 6vw, 12rem);"
+      <a href="/social" class="font-normal text-left leading-none bigword font-helvetica"
+        style="font-size: clamp(8rem, 6vw, 12rem);"
         class:moving={moving[2]} class:hovered={hovered[2]}
         on:mouseenter={() => highlight(2)} on:mouseleave={() => clearHighlight(2)}
         on:click={(e) => handleMainNav(e, '/social')}>
         <span>Social</span>
       </a>
-      <a href="/vision" class="font-normal text-right leading-none bigword font-helvetica"
-        style="margin-top:8px; margin-right:-3px; font-size: clamp(8rem, 6vw, 12rem);"
+      <a href="/vision" class="font-normal text-left leading-none bigword font-helvetica"
+        style="font-size: clamp(8rem, 6vw, 12rem);"
         class:moving={moving[3]} class:hovered={hovered[3]}
         on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}
         on:click={(e) => handleMainNav(e, '/vision')}>
         <span>Vision</span>
       </a>
-      <a href="/waitlist" class="font-normal text-right leading-none bigword font-helvetica"
-        style="margin-top:-2px; font-size: clamp(8rem, 6vw, 12rem);"
+      <a href="/waitlist" class="font-normal text-left leading-none bigword font-helvetica"
+        style="font-size: clamp(8rem, 6vw, 12rem);"
         class:moving={moving[4]} class:hovered={hovered[4]}
         on:mouseenter={() => highlight(4)} on:mouseleave={() => clearHighlight(4)}
         on:click={(e) => handleMainNav(e, '/waitlist')}>
