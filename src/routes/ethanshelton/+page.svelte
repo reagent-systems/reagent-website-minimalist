@@ -1,24 +1,13 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { goto } from '$app/navigation';
-
 let fadeIn = false;
-let sliding = false;
-let moving = false;
 
 onMount(() => {
   setTimeout(() => { fadeIn = true; }, 10);
 });
 
-async function handleBackNav(e: MouseEvent) {
-  e.preventDefault();
-  sliding = true;
-  await new Promise(r => setTimeout(r, 500));
-  window.location.href = '/team';
-}
-
 function handleBack() {
-  goto('/team');
+  window.location.href = '/';
 }
 </script>
 
@@ -29,39 +18,6 @@ function handleBack() {
 }
 .fade-in.visible {
   opacity: 1;
-}
-.slide-up {
-  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
-  transform: translateY(-100vh);
-  opacity: 0;
-}
-.bigword {
-  transition: color 0.35s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), text-shadow 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1);
-  vertical-align: top;
-  line-height: 1;
-  backface-visibility: hidden;
-  will-change: transform;
-}
-.bigword.moving {
-  transform: translateY(-4px);
-}
-.underline-animate {
-  position: relative;
-}
-.underline-animate::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -2px;
-  width: 0%;
-  height: 2px;
-  background: currentColor;
-  transition: width 0.3s cubic-bezier(0.4,0,0.2,1), left 0.3s cubic-bezier(0.4,0,0.2,1);
-  transform: translateX(-50%);
-}
-.underline-animate:hover::after, .underline-animate:focus::after {
-  width: 100%;
-  left: 50%;
 }
 .font-courier {
   font-family: 'Courier New', Courier, monospace;
@@ -74,135 +30,176 @@ function handleBack() {
 .medium-font:hover, .medium-font:focus {
   transform: translateY(-6px);
 }
-
-.bio-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  line-height: 1.6;
-}
-
-.bio-section h2 {
-  margin-bottom: 1rem;
-  color: #fff;
-  font-size: 1.5rem;
-}
-
-.bio-section p {
-  margin-bottom: 1.5rem;
-  color: #ccc;
-  font-size: 1.1rem;
-}
-
-.bio-section strong {
-  color: #fff;
-  font-weight: bold;
-}
-
-.bio-section em {
-  color: #999;
-  font-style: italic;
-}
-
-.role-highlight {
-  background: rgba(255, 255, 255, 0.1);
+.bordered-box {
+  border: 1px solid white;
   padding: 1rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  border-left: 4px solid #4CAF50;
+  margin-bottom: 1rem;
 }
-
-.role-highlight h3 {
-  color: #4CAF50;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.role-highlight p {
-  margin: 0.5rem 0;
-  color: #ddd;
-}
-
-.focus-areas {
+.profile-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 1rem 0;
+  flex-direction: column;
+  padding: 4rem;
+  padding-top: 12rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
-
-.focus-tag {
-  background: rgba(76, 175, 80, 0.2);
-  border: 1px solid #4CAF50;
-  color: #4CAF50;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: bold;
+.main-content {
+  display: flex;
+  flex: 1;
+}
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+  .left-column {
+    flex: none;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .right-column {
+    flex: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .image-placeholder {
+    height: 200px;
+    margin-top: 0;
+    width: 100%;
+  }
+  .profile-container {
+    padding: 1rem;
+    padding-top: 6rem;
+  }
+  .footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .footer .left-column,
+  .footer .right-column {
+    flex: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer .team-names {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .footer .team-name-container {
+    text-align: left;
+    min-width: auto;
+  }
+}
+.left-column {
+  flex: 2;
+  padding-right: 2rem;
+}
+.right-column {
+  flex: 1;
+  padding-left: 2rem;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+}
+.image-placeholder {
+  border: 1px solid white;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  flex: 1;
+}
+.bio-text {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 1rem;
+}
+.team-names {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 4rem;
+}
+.team-name-container {
+  min-width: 180px;
+  text-align: right;
+  white-space: nowrap;
+}
+.underline-animate {
+  position: relative;
+}
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.underline-animate:hover::after, .underline-animate:focus::after {
+  width: 100%;
+}
+.image-placeholder {
+  border: 1px solid white;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
 }
 </style>
 
-<div class="min-h-screen flex flex-col bg-custom text-white font-courier">
-  <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
-    <div class="flex flex-col justify-center fade-in w-full md:w-1/2 pr-8 md:pr-8" class:visible={fadeIn} style="max-width:600px; margin-left:5vw;">
-      <div class="medium-font mb-12" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Team">Ethan Shelton</div>
-      
-      <div class="bio-section">
-        <div class="role-highlight">
-          <h3>Self-Taught Developer & YouTuber</h3>
-          <p><strong>Alias:</strong> Spike</p>
-          <p><strong>Age:</strong> 25</p>
-          <p><strong>Location:</strong> Florida</p>
-          <p><strong>Title:</strong> CMO</p>
-          <p><strong>Languages:</strong> C#, Python, Web</p>
-          <div class="focus-areas">
-            <span class="focus-tag">Agents</span>
-            <span class="focus-tag">Connected Life</span>
-            <span class="focus-tag">Productivity Apps</span>
-            <span class="focus-tag">VR</span>
+<div class="min-h-screen bg-custom text-white font-courier">
+  <div class="profile-container fade-in" class:visible={fadeIn}>
+    <div class="main-content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <div class="mb-8">
+          <div class="medium-font" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Home">
+            Ethan Shelton
           </div>
         </div>
         
-        <p>
-          Hello, I'm <strong>Spike</strong>! I've been coding since I was 13, diving into mods, mobile games, VR experiences, websites, AWS, and software development. I thrive on the challenge, the puzzles, and the fun of piecing it all together.
-        </p>
+        <div class="mb-6">
+          <div>Alias: Spike</div>
+          <div>Age: 25</div>
+          <div>Location: Florida</div>
+          <div>Title: CMO</div>
+        </div>
         
-        <p>
-          Currently, I'm focusing on my <strong>vlogging and VR YouTube channels</strong> and crafting my own AI assistant named <strong>KIT</strong>. This is only the beginning to my story of relentless creation.
-        </p>
-        
-        <p>
-          <em>When I'm not coding or creating content, you'll find me exploring the latest in VR technology, experimenting with AI agents, or sharing my journey with the world through my channels.</em>
-        </p>
+        <div class="bio-text">
+          Hello, I'm Spike! I've been coding since I was 13, diving into mods, mobile games, VR experiences, websites, AWS, and software development. I thrive on the challenge, the puzzles, and the fun of piecing it all together. Currently, I'm focusing on my vlogging and VR YouTube channels and crafting my own AI assistant named KIT. This is only the beginning to my story of relentless creation.
+        </div>
       </div>
-    </div>
-    
-    <div class="w-full md:w-1/2 pr-4 md:pr-8 fade-in" class:visible={fadeIn} style="max-width:600px;">
-      <div class="text-lg leading-relaxed w-full text-justify break-words">
-        <h2>Current Projects</h2>
-        <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid #4CAF50;">🎥 <strong>YouTube Channels:</strong> Vlogging and VR content creation</li>
-          <li style="margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid #4CAF50;">🤖 <strong>KIT AI Assistant:</strong> Personal AI assistant development</li>
-          <li style="margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid #4CAF50;">🎮 <strong>VR Experiences:</strong> Immersive technology exploration</li>
-          <li style="margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid #4CAF50;">⚡ <strong>Productivity Apps:</strong> Connected life solutions</li>
-        </ul>
-        
-        <h2 style="margin-top: 2rem;">Technical Expertise</h2>
-        <div class="focus-areas">
-          <span class="focus-tag">C#</span>
-          <span class="focus-tag">Python</span>
-          <span class="focus-tag">Web Development</span>
-          <span class="focus-tag">AWS</span>
-          <span class="focus-tag">Mobile Games</span>
-          <span class="focus-tag">VR Development</span>
-          <span class="focus-tag">AI Agents</span>
+      
+      <!-- Right Column -->
+      <div class="right-column">
+        <div class="image-placeholder">
+          Image/Slideshow
         </div>
       </div>
     </div>
-  </div>
-  
-  <div class="w-full flex justify-center pb-12 fade-in" class:visible={fadeIn}>
-    <a href="/team" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
-      ← Back to Team
-    </a>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <a href="https://www.github.com/ethanshelton" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">https://www.github.com/ethanshelton</a>
+      <div class="team-names">
+        <a href="/thyfriendlyfox" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Kyle Steel</a>
+        <a href="/bentlybro" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">BentlyBro</a>
+        <a href="/coltonfrear" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Colton Frear</a>
+        <a href="/alexeykuznetsov" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">Alexey Kuznetsov</a>
+      </div>
+    </div>
   </div>
 </div> 
