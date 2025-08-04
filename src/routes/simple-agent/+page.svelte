@@ -18,6 +18,14 @@ let sessionStartTime: Date | null = null;
 let totalSteps = 0;
 let filesCreated = 0;
 let currentUser: any = null;
+let introMessages = [
+  "SimpleAgent is designed with the belief that AI agents don't need to be complex to be useful.",
+  "By focusing on a small set of core operations and using function calling for all interactions, SimpleAgent remains easy to understand, modify, and extend.",
+  "While providing advanced features like dynamic tool loading, loop detection, and intelligent execution management.",
+  "📚 [View Documentation](/simple-agent/docs)"
+];
+let introMessageIndex = 0;
+let showingIntro = true;
 
 // Use Firebase from auth.ts (no config duplication!)
 const db = getFirestore(firebaseApp);
@@ -29,6 +37,19 @@ user.subscribe(u => {
 
 function handleBack() {
   goto('/agent');
+}
+
+function showIntroMessages() {
+  if (introMessageIndex < introMessages.length) {
+    addMessage('agent', introMessages[introMessageIndex]);
+    introMessageIndex++;
+    
+    if (introMessageIndex < introMessages.length) {
+      setTimeout(showIntroMessages, 1000);
+    } else {
+      showingIntro = false;
+    }
+  }
 }
 
 // Generate anonymous ID for tracking
@@ -349,7 +370,8 @@ function detectAndRenderMarkdown(content: string): { isMarkdown: boolean, render
     content.includes('1. ') ||     // Numbered lists
     content.includes('[') ||       // Links
     content.includes('`') ||       // Code
-    content.includes('> ');        // Quotes
+    content.includes('> ') ||      // Quotes
+    content.includes('http');      // URLs
 
   if (!hasMarkdownPatterns) {
     return { isMarkdown: false, rendered: content };
@@ -366,8 +388,10 @@ function detectAndRenderMarkdown(content: string): { isMarkdown: boolean, render
     // Code blocks
     .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
     .replace(/`(.*?)`/g, '<code>$1</code>')
-    // Links
+    // Markdown links
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    // Plain URLs (http/https)
+    .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
     // Line breaks
     .replace(/\n/g, '<br>');
 
@@ -482,6 +506,11 @@ onMount(() => {
   setTimeout(() => { fadeIn = true; }, 10);
   connectWebSocket();
   
+  // Start intro messages after a short delay
+  setTimeout(() => {
+    showIntroMessages();
+  }, 500);
+  
   // Log page access
   logUsageEvent('page_loaded', {
     page_type: 'simple_agent',
@@ -539,12 +568,13 @@ onDestroy(() => {
 /* Chat interface styles */
 .chat-container {
   width: 100%;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   overflow-y: auto;
-  padding-right: 1rem;
+  margin-bottom: 1rem;
+  min-height: 0;
 }
 
 .message {
@@ -556,8 +586,56 @@ onDestroy(() => {
   font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
-  width: 60%;
-  max-width: 400px;
+  width: 70%;
+  max-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .message {
+    width: 85%;
+    font-size: 13px;
+    padding: 0.75rem;
+  }
+  
+  .chat-input-full {
+    padding: 0.75rem;
+  }
+  
+  .input-field-full {
+    font-size: 13px;
+  }
+  
+  .send-button-full {
+    font-size: 13px;
+    padding: 0.5rem 1rem;
+  }
+  
+  .message-content a {
+    font-size: 12px;
+    padding: 1px 2px;
+  }
+}
+
+.chat-interface-container {
+  height: calc(100vh - 8rem);
+}
+
+@media (max-width: 1024px) {
+  .chat-interface-container {
+    height: calc(100vh - 10rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-interface-container {
+    height: calc(100vh - 12rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-interface-container {
+    height: calc(100vh - 14rem);
+  }
 }
 
 .message.user {
@@ -570,20 +648,17 @@ onDestroy(() => {
   margin-right: auto;
 }
 
-.chat-input {
+.chat-input-full {
   border: 1px solid white;
   padding: 1rem;
   display: flex;
   gap: 1rem;
-  align-items: center;
-  width: 60%;
-  max-width: 400px;
-  align-self: flex-end;
-  margin-left: auto;
+  align-items: flex-end;
+  width: 100%;
   margin-top: auto;
 }
 
-.input-field {
+.input-field-full {
   flex: 1;
   background: transparent;
   border: none;
@@ -592,29 +667,35 @@ onDestroy(() => {
   font-size: 14px;
   padding: 0;
   outline: none;
+  resize: none;
+  min-height: 2.5rem;
+  max-height: 6rem;
+  line-height: 1.4;
 }
 
-.input-field::placeholder {
+.input-field-full::placeholder {
   color: #666;
 }
 
-.send-button {
+.send-button-full {
   background: transparent;
   color: white;
   border: 1px solid white;
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.2s;
+  white-space: nowrap;
+  align-self: flex-end;
 }
 
-.send-button:hover:not(:disabled) {
+.send-button-full:hover:not(:disabled) {
   background: white;
   color: black;
 }
 
-.send-button:disabled {
+.send-button-full:disabled {
   border-color: #666;
   color: #666;
   cursor: not-allowed;
@@ -761,12 +842,34 @@ onDestroy(() => {
 
 .message-content a {
   color: #4CAF50;
-  text-decoration: underline;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  word-break: break-all;
+  position: relative;
+}
+
+.message-content a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.message-content a:hover::after, .message-content a:focus::after {
+  width: 100%;
 }
 
 .message-content a:hover {
   color: #66BB6A;
+}
+
+.message-content a:visited {
+  color: #8BC34A;
 }
 
 .message-content ul, .message-content ol {
@@ -823,116 +926,119 @@ onDestroy(() => {
 </style>
 
 <div class="min-h-screen flex flex-col bg-custom text-white font-courier">
-  <div class="flex flex-col md:flex-row flex-1 items-center justify-center">
-    <div class="flex flex-col justify-center fade-in w-full md:w-1/2 pr-8 md:pr-8" class:visible={fadeIn} style="max-width:600px; margin-left:5vw;">
-      <div class="medium-font mb-12" tabindex="0" on:click={handleBack} on:keydown={(e) => e.key === 'Enter' && handleBack()} aria-label="Back to Agent">Simple-Agent</div>
-      <div class="text-lg leading-relaxed w-full text-justify break-words mb-16">
-        SimpleAgent is designed with the belief that AI agents don't need to be complex to be useful. By focusing on a small set of core operations and using function calling for all interactions, SimpleAgent remains easy to understand, modify, and extend while providing advanced features like dynamic tool loading, loop detection, and intelligent execution management.
+  <!-- Header -->
+  <div class="flex flex-col fade-in w-full" class:visible={fadeIn} style="padding: 2rem 0;">
+  </div>
+  
+  <!-- Chat Interface Container -->
+  <div class="flex flex-col fade-in w-full chat-interface-container" class:visible={fadeIn} style="padding: 2rem 0 0 0;">
+    {#if connectionError}
+      <div class="error-message">
+        {connectionError}
       </div>
-      <div class="mb-8">
-        <a href="/simple-agent/docs" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
-          📚 View Documentation
-        </a>
-      </div>
+    {/if}
+    
+    <!-- Connection Status -->
+    <div class="connection-status">
+      <div class="status-indicator {connected ? 'connected' : 'disconnected'}"></div>
+      <span class="status-text">
+        {#if connected}
+          🟢 Connected to Simple-Agent
+        {:else}
+          🔴 Connecting...
+        {/if}
+      </span>
+      {#if currentUser}
+        <span class="user-indicator">👤 {currentUser.email}</span>
+      {:else}
+        <span class="user-indicator">👥 Anonymous</span>
+      {/if}
     </div>
     
-    <!-- Chat Interface Container -->
-    <div class="w-full md:w-1/2 pr-4 md:pr-8 fade-in flex flex-col" class:visible={fadeIn} style="height: 60vh; max-height: 500px;">
-      {#if connectionError}
-        <div class="error-message">
-          {connectionError}
+    <!-- Chat Messages Area -->
+    <div class="chat-container flex-1">
+      {#if messages.length === 0 && !showingIntro}
+        <div class="welcome-message">
+          <h3>Welcome to Simple-Agent! 🤖</h3>
+          <p>Start by describing a task you'd like me to help with. I can:</p>
+          <ul>
+            <li>• Help with research and analysis</li>
+            <li>• Write and edit documents</li>
+            <li>• Solve problems step by step</li>
+            <li>• Use tools to accomplish complex tasks</li>
+          </ul>
+          <p><em>Just type your request below to get started!</em></p>
         </div>
       {/if}
       
-      <!-- Connection Status -->
-      <div class="connection-status">
-        <div class="status-indicator {connected ? 'connected' : 'disconnected'}"></div>
-        <span class="status-text">
-          {#if connected}
-            🟢 Connected to Simple-Agent
-          {:else}
-            🔴 Connecting...
-          {/if}
-        </span>
-        {#if currentUser}
-          <span class="user-indicator">👤 {currentUser.email}</span>
-        {:else}
-          <span class="user-indicator">👥 Anonymous</span>
-        {/if}
-      </div>
-      
-      <div class="chat-container">
-        {#if messages.length === 0}
-          <div class="welcome-message">
-            <h3>Welcome to Simple-Agent! 🤖</h3>
-            <p>Start by describing a task you'd like me to help with. I can:</p>
-            <ul>
-              <li>• Help with research and analysis</li>
-              <li>• Write and edit documents</li>
-              <li>• Solve problems step by step</li>
-              <li>• Use tools to accomplish complex tasks</li>
-            </ul>
-            <p><em>Just type your request below to get started!</em></p>
-          </div>
-        {/if}
-        
-        {#each messages as message}
-          <div class="message {message.type}">
-            <div class="message-content">
-              {#if message.isMarkdown && message.renderedContent}
-                {@html message.renderedContent}
-              {:else}
-                {message.content}
-              {/if}
-            </div>
-            <div class="message-time">
-              {message.timestamp.toLocaleTimeString()}
-            </div>
-          </div>
-        {/each}
-        
-        {#if isAgentRunning && !isWaitingForInput}
-          <div class="typing-indicator">
-            <div class="typing-dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <span>Agent is thinking...</span>
-          </div>
-        {/if}
-        
-        <div class="chat-input">
-          <input
-            bind:value={currentMessage}
-            on:keypress={handleKeyPress}
-            placeholder={isWaitingForInput ? "Enter your response..." : "Describe your task..."}
-            class="input-field"
-            disabled={!connected || (isAgentRunning && !isWaitingForInput)}
-          />
-          <button
-            on:click={sendMessage}
-            disabled={!connected || !currentMessage.trim() || (isAgentRunning && !isWaitingForInput)}
-            class="send-button"
-          >
-            {#if isWaitingForInput}
-              Send
-            {:else if isAgentRunning}
-              Running...
+      {#each messages as message}
+        <div class="message {message.type}">
+          <div class="message-content">
+            {#if message.isMarkdown && message.renderedContent}
+              {@html message.renderedContent}
             {:else}
-              Start
+              {message.content}
             {/if}
-          </button>
+          </div>
+          <div class="message-time">
+            {message.timestamp.toLocaleTimeString()}
+          </div>
         </div>
-      </div>
+      {/each}
+      
+      {#if isAgentRunning && !isWaitingForInput}
+        <div class="typing-indicator">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span>Agent is thinking...</span>
+        </div>
+      {/if}
+      
+      {#if showingIntro && introMessageIndex < introMessages.length}
+        <div class="typing-indicator">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span>Agent is connecting...</span>
+        </div>
+      {/if}
+    </div>
+    
+    <!-- Full-width Input Area -->
+    <div class="chat-input-full" style="flex-shrink: 0;">
+      <textarea
+        bind:value={currentMessage}
+        on:keypress={handleKeyPress}
+        placeholder={isWaitingForInput ? "Enter your response..." : "Describe your task..."}
+        class="input-field-full"
+        disabled={!connected || (isAgentRunning && !isWaitingForInput) || showingIntro}
+        rows="2"
+      ></textarea>
+      <button
+        on:click={sendMessage}
+        disabled={!connected || !currentMessage.trim() || (isAgentRunning && !isWaitingForInput) || showingIntro}
+        class="send-button-full"
+      >
+        {#if isWaitingForInput}
+          Send
+        {:else if isAgentRunning}
+          Running...
+        {:else}
+          Start
+        {/if}
+      </button>
     </div>
   </div>
-  <div class="w-full flex justify-center pb-12 fade-in" class:visible={fadeIn}>
+  
+  <!-- Footer -->
+  <div class="w-full flex justify-center pb-8 fade-in" class:visible={fadeIn}>
     <a href="https://github.com/reagent-systems/Simple-Agent-Core" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
       https://github.com/reagent-systems/Simple-Agent-Core
     </a>
-    <!-- <a href="https://github.com/reagent-systems/Simple-Agent-Tools" class="text-lg underline-animate font-courier" style="color:inherit; text-decoration:none;">
-      https://github.com/reagent-systems/Simple-Agent-Tools
-    </a> -->
   </div>
 </div> 
