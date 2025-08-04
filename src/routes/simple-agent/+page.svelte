@@ -579,7 +579,6 @@ onDestroy(() => {
 
 .message {
   padding: 1rem;
-  border: 1px solid white;
   background: transparent;
   color: white;
   font-family: 'Courier New', Courier, monospace;
@@ -641,15 +640,26 @@ onDestroy(() => {
 .message.user {
   align-self: flex-end;
   margin-left: auto;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: none;
+  border-bottom: 1px solid white;
 }
 
 .message.agent {
   align-self: flex-start;
   margin-right: auto;
+  border-top: 1px solid white;
+  border-left: none;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .chat-input-full {
-  border: 1px solid white;
+  border-top: 1px solid white;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid white;
   padding: 1rem;
   display: flex;
   gap: 1rem;
@@ -938,22 +948,7 @@ onDestroy(() => {
       </div>
     {/if}
     
-    <!-- Connection Status -->
-    <div class="connection-status">
-      <div class="status-indicator {connected ? 'connected' : 'disconnected'}"></div>
-      <span class="status-text">
-        {#if connected}
-          🟢 Connected to Simple-Agent
-        {:else}
-          🔴 Connecting...
-        {/if}
-      </span>
-      {#if currentUser}
-        <span class="user-indicator">👤 {currentUser.email}</span>
-      {:else}
-        <span class="user-indicator">👥 Anonymous</span>
-      {/if}
-    </div>
+
     
     <!-- Chat Messages Area -->
     <div class="chat-container flex-1">
