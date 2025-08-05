@@ -74,6 +74,12 @@ async function handleMainNav(e: MouseEvent, href: string) {
   backface-visibility: hidden;
   will-change: transform;
 }
+
+@media (max-width: 768px) {
+  .big-words .bigword {
+    font-size: clamp(7rem, 5vw, 11rem) !important;
+  }
+}
 .big-words .bigword.moving {
   transform: translateX(4px);
 }
@@ -125,12 +131,12 @@ async function handleMainNav(e: MouseEvent, href: string) {
         on:click={(e) => handleMainNav(e, '/social')}>
         <span>Social</span>
       </a>
-      <a href="/vision" class="font-normal text-left leading-none bigword font-helvetica"
+      <a href="/repos" class="font-normal text-left leading-none bigword font-helvetica"
         style="font-size: clamp(8rem, 6vw, 12rem);"
         class:moving={moving[3]} class:hovered={hovered[3]}
         on:mouseenter={() => highlight(3)} on:mouseleave={() => clearHighlight(3)}
-        on:click={(e) => handleMainNav(e, '/vision')}>
-        <span>Vision</span>
+        on:click={(e) => handleMainNav(e, '/repos')}>
+        <span>Repos</span>
       </a>
       <a href="/waitlist" class="font-normal text-left leading-none bigword font-helvetica"
         style="font-size: clamp(8rem, 6vw, 12rem);"
@@ -149,18 +155,20 @@ async function handleMainNav(e: MouseEvent, href: string) {
         <a href="/reku" class="text-lg underline-animate font-courier">Model</a>
         <a href="/agent" class="text-lg underline-animate font-courier">Agent</a>
       </div>
-      <!-- Bottom row (2 links) - visible on mobile, hidden on desktop -->
+      <!-- Bottom row (3 links) - visible on mobile, hidden on desktop -->
       <div class="flex space-x-16 md:hidden">
         <a href="/app" class="text-lg underline-animate font-courier">App</a>
         <a href="/repeat" class="text-lg underline-animate font-courier">Repeat</a>
+        <a href="/vision" class="text-lg underline-animate font-courier">Vision</a>
       </div>
-      <!-- Desktop layout (5 links in a row) - hidden on mobile, visible on desktop -->
+      <!-- Desktop layout (6 links in a row) - hidden on mobile, visible on desktop -->
       <div class="hidden md:flex space-x-16">
         <a href="/deku" class="text-lg underline-animate font-courier">Data</a>
         <a href="/reku" class="text-lg underline-animate font-courier">Model</a>
         <a href="/agent" class="text-lg underline-animate font-courier">Agent</a>
         <a href="/app" class="text-lg underline-animate font-courier">App</a>
         <a href="/repeat" class="text-lg underline-animate font-courier">Repeat</a>
+        <a href="/vision" class="text-lg underline-animate font-courier">Vision</a>
       </div>
     </div>
   </div>
